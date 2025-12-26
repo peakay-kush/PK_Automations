@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
+import { initSentry, captureException } from '@/utils/sentry';
+
+initSentry();
 
 const JWT_SECRET = process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET || 'dev-secret';
 
@@ -14,6 +17,7 @@ export function verifyToken(token) {
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (e) {
+    try { captureException(e, { during: 'verifyToken', token: String(token).slice(0,40) }); } catch (ee) {}
     return null;
   }
 }

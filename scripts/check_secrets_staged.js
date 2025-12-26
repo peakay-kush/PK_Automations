@@ -12,8 +12,10 @@ function getStagedFiles() {
   }
 }
 
-const secretKeyPattern = /(?:JWT_SECRET|NEXT_PUBLIC_JWT_SECRET|CLOUDINARY_API_SECRET|CLOUDINARY_API_KEY|CONSUMER_SECRET|CONSUMER_KEY|PASSKEY|PASSWORD|EMAIL_PASSWORD|APP_PASSWORD|SENDGRID_API_KEY|MPESA|API_KEY|SECRET)\s*=\s*(?!REPLACE_ME|''|\"\")/i;
-const genericSecretPattern = /(AKIA|ASIA|AIza)[A-Za-z0-9_\-]{8,}|[A-Za-z0-9_\-]{20,}/; // coarse heuristic
+// Only match key=value pairs where value is a literal (e.g. KEY="value") to avoid flagging code references like process.env.KEY
+const secretKeyPattern = /(?:JWT_SECRET|NEXT_PUBLIC_JWT_SECRET|CLOUDINARY_API_SECRET|CLOUDINARY_API_KEY|CONSUMER_SECRET|CONSUMER_KEY|PASSKEY|PASSWORD|EMAIL_PASSWORD|APP_PASSWORD|SENDGRID_API_KEY|MPESA|API_KEY|SECRET)\s*=\s*(["']).+\1/i;
+// keep a generic heuristic for very long tokens (but require an assignment or colon in the line)
+const genericSecretPattern = /(?:[:=]\s*)([A-Za-z0-9_\-]{40,})/; // coarse heuristic
 
 const staged = getStagedFiles();
 let found = [];
