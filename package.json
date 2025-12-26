@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
+    "backup:db": "node scripts/backup_db.js",
     "optimize:logo": "node scripts/convert-logo.js",
     "create:super": "node scripts/create-super.js",
     "mpesa-worker": "echo 'mpesa integration disabled'",
@@ -15,6 +16,7 @@
     "test:mpesa": "echo 'mpesa integration disabled'"
   },
   "dependencies": {
+    "@sentry/nextjs": "^10.32.1",
     "acorn": "^8.8.2",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.8.0",
