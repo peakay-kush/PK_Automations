@@ -5,6 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
+export const dynamic = 'force-dynamic';
+
 const dataPath = path.join(process.cwd(), 'src', 'data', 'services.json');
 function readServicesFile() {
   if (!fs.existsSync(dataPath)) return [];

@@ -3,6 +3,8 @@ import { getDB, saveDB } from '@/utils/db';
 import { requireAdmin } from '@/utils/serverAuth';
 import bcrypt from 'bcryptjs';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req) {
   const auth = requireAdmin(req);
   if (auth && auth.status && auth.status !== 200) return auth;

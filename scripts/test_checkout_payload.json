@@ -1,0 +1,12 @@
+{
+  "name": "Test User",
+  "phone": "254700000000",
+  "email": "test@example.com",
+  "paymentMethod": "mpesa",
+  "items": [
+    { "id": 9999, "name": "Test Product", "price": 200, "quantity": 1 }
+  ],
+  "subtotal": 200,
+  "total": 200,
+  "shipping": 0
+}

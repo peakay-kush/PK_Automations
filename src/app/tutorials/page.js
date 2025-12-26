@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { tutorials as fallbackTutorials } from '@/data/products';
@@ -17,7 +19,8 @@ export default function Tutorials() {
   const [tutorials, setTutorials] = useState(fallbackTutorials || []);
 
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isEditing, setIsEditing] = useState(localStorage?.getItem('pkat_admin_edit') === '1');
+  // Avoid reading localStorage at module/init time so build/export doesn't fail
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     let mounted = true;

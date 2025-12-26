@@ -1,0 +1,20 @@
+{
+  "Body": {
+    "stkCallback": {
+      "MerchantRequestID": "mreq-test-12345",
+      "CheckoutRequestID": "ws_CO_test_12345",
+      "ResultCode": 0,
+      "ResultDesc": "Success. Request accepted for processing",
+      "CallbackMetadata": {
+        "Item": [
+          { "Name": "Amount", "Value": 200 },
+          { "Name": "MpesaReceiptNumber", "Value": "TST12345" },
+          { "Name": "TransactionDate", "Value": 20251227120000 },
+          { "Name": "PhoneNumber", "Value": 254700000000 },
+          { "Name": "AccountReference", "Value": "PKTEST" }
+        ]
+      },
+      "AccountReference": "PKTEST"
+    }
+  }
+}

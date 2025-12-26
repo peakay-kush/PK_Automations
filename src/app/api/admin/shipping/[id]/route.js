@@ -5,6 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
+export const dynamic = 'force-dynamic';
+
 const dataPath = path.join(process.cwd(), 'src', 'data', 'shipping.json');
 function readFile() { const raw = fs.readFileSync(dataPath, 'utf8'); return JSON.parse(raw); }
 function writeFile(obj) { fs.writeFileSync(dataPath, JSON.stringify(obj, null, 2)); }

@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+export const dynamic = 'force-dynamic';
+
+import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Mail, Lock, CheckCircle, AlertCircle } from 'lucide-react';
@@ -13,7 +15,12 @@ export default function LoginPage() {
   const [error, setError] = useState(null);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirect') || '/';
+  const [redirect, setRedirect] = useState('/');
+
+  // read redirect only on client after mount
+  useEffect(() => {
+    try { setRedirect(searchParams.get('redirect') || '/'); } catch (e) { setRedirect('/'); }
+  }, [searchParams]);
 
   async function handleSubmit(e) {
     e.preventDefault();

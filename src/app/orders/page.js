@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
@@ -13,7 +15,11 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useSearchParams();
-  const highlight = params?.get('highlight') || null;
+  const [highlight, setHighlight] = useState(null);
+
+  useEffect(() => {
+    try { setHighlight(params?.get('highlight') || null); } catch (e) { setHighlight(null); }
+  }, [params]);
 
   useEffect(() => {
     const fetchOrders = async () => {

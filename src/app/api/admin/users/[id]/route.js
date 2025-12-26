@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getDB, saveDB } from '@/utils/db';
 import { requireAdmin } from '@/utils/serverAuth';
-
+export const dynamic = 'force-dynamic';
 export async function GET(req, { params }) {
   const auth = requireAdmin(req);
   if (auth && auth.status && auth.status !== 200) return auth;

@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import { requireAdmin, requireSuper } from '@/utils/serverAuth';
 
-// Note: This route expects a multipart/form-data POST with a field named "file".
+export const dynamic = 'force-dynamic';
+
+// Note: This route expects a multipart/form-data POST with a field named "file";
 // The file will be written to the `public/uploads/` directory and the returned
 // JSON contains the public URL (e.g. { ok: true, url: '/uploads/abc.jpg' }).
 
