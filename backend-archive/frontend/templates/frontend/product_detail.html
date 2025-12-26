@@ -1,0 +1,15 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<div class="product-detail max-w-4xl mx-auto">
+  <img class="w-full max-h-96 object-cover rounded-md" src="{{ product.image_url }}" alt="{{ product.name }}" onerror="this.onerror=null;this.src='/static/frontend/img/placeholder.png'">
+  <h1 class="mt-4 text-3xl font-bold">{{ product.name }}</h1>
+  <p class="text-xl text-gray-700">KSh {{ product.price|floatformat:2 }}</p>
+  <div class="mt-4">{{ product.description }}</div>
+  <h3 class="mt-6">Specifications</h3>
+  <p>{{ product.specifications }}</p>
+  <div class="p-2 mt-4">
+    <button class="add-to-cart" data-id="{{ product.id }}" data-name="{{ product.name|escapejs }}" data-price="{{ product.price }}" data-image="{{ product.image_url }}">Add to cart</button>
+  </div>
+</div>
+{% endblock %}

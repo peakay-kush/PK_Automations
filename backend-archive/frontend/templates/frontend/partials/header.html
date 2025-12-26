@@ -1,0 +1,20 @@
+<header>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/shop/">Shop</a>
+    <a href="/tutorials/">Tutorials</a>
+    <a href="/student-hub/">Student Hub</a>
+    <a href="/cart/" class="relative">Cart <span class="cart-count" style="display:inline-block;padding:2px 6px;border-radius:999px;background:#00E03F;color:#fff;margin-left:6px;">0</span></a>
+    <button id="dark-toggle" aria-label="Toggle dark mode" style="margin-left:10px;">🌓</button>
+    {% if user.is_authenticated %}
+      <span>Welcome, {{ user.first_name|default:user.username }}</span>
+      <form id="logout-form" method="post" action="/logout/" style="display:inline; margin-left:8px;">
+        {% csrf_token %}
+        <button type="submit" id="logout-btn">Logout</button>
+      </form>
+    {% else %}
+      <a href="/login/">Login</a>
+      <a href="/register/">Register</a>
+    {% endif %}
+  </nav>
+</header>

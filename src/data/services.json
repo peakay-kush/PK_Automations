@@ -1,0 +1,1085 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "AutoCAD Floor Plan Drawings",
+      "description": "Professional AutoCAD floor plan drawings, electrical layout plans, and site drawings in DWG/DXF formats",
+      "category": "Services",
+      "price": "Quotation based",
+      "image": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766168980/pk-uploads/1766168954133-bg2.jpeg.jpg",
+      "specifications": "DWG/DXF deliverables, Electrical layout drawings, As-built revisions, Site measurement support",
+      "images": [
+        "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766168980/pk-uploads/1766168954133-bg2.jpeg.jpg"
+      ],
+      "attachments": [],
+      "publishWork": false,
+      "works": [
+        {
+          "title": "test",
+          "description": "test test",
+          "attachments": [
+            {
+              "url": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766216732/pk-uploads/1766216707036-pk1.jpg.jpg",
+              "mime": "image/jpeg",
+              "name": "pk1.jpg"
+            }
+          ]
+        }
+      ],
+      "type": "click",
+      "nativeEvent": {
+        "isTrusted": true
+      },
+      "eventPhase": 3,
+      "bubbles": true,
+      "cancelable": true,
+      "timeStamp": 1648392.5999999996,
+      "defaultPrevented": false,
+      "isTrusted": true,
+      "view": {
+        "name": "",
+        "location": {
+          "ancestorOrigins": {},
+          "href": "http://localhost:3000/services",
+          "origin": "http://localhost:3000",
+          "protocol": "http:",
+          "host": "localhost:3000",
+          "hostname": "localhost",
+          "port": "3000",
+          "pathname": "/services",
+          "search": "",
+          "hash": ""
+        },
+        "customElements": {},
+        "history": {},
+        "navigation": {},
+        "locationbar": {},
+        "menubar": {},
+        "personalbar": {},
+        "scrollbars": {},
+        "statusbar": {},
+        "toolbar": {},
+        "status": "",
+        "closed": false,
+        "length": 0,
+        "opener": null,
+        "frameElement": null,
+        "navigator": {},
+        "origin": "http://localhost:3000",
+        "external": {},
+        "screen": {},
+        "innerWidth": 1272,
+        "innerHeight": 635,
+        "scrollX": 0,
+        "pageXOffset": 0,
+        "scrollY": 230,
+        "pageYOffset": 230,
+        "visualViewport": {},
+        "screenX": 0,
+        "screenY": 0,
+        "outerWidth": 1280,
+        "outerHeight": 720,
+        "devicePixelRatio": 1.5,
+        "screenLeft": 0,
+        "screenTop": 0,
+        "styleMedia": {},
+        "onsearch": null,
+        "onappinstalled": null,
+        "onbeforeinstallprompt": null,
+        "crypto": {},
+        "onbeforexrselect": null,
+        "onabort": null,
+        "onbeforeinput": null,
+        "onbeforematch": null,
+        "onbeforetoggle": null,
+        "onblur": null,
+        "oncancel": null,
+        "oncanplay": null,
+        "oncanplaythrough": null,
+        "onchange": null,
+        "onclick": null,
+        "onclose": null,
+        "oncommand": null,
+        "oncontentvisibilityautostatechange": null,
+        "oncontextlost": null,
+        "oncontextmenu": null,
+        "oncontextrestored": null,
+        "oncuechange": null,
+        "ondblclick": null,
+        "ondrag": null,
+        "ondragend": null,
+        "ondragenter": null,
+        "ondragleave": null,
+        "ondragover": null,
+        "ondragstart": null,
+        "ondrop": null,
+        "ondurationchange": null,
+        "onemptied": null,
+        "onended": null,
+        "onerror": null,
+        "onfocus": null,
+        "onformdata": null,
+        "oninput": null,
+        "oninvalid": null,
+        "onkeydown": null,
+        "onkeypress": null,
+        "onkeyup": null,
+        "onload": null,
+        "onloadeddata": null,
+        "onloadedmetadata": null,
+        "onloadstart": null,
+        "onmousedown": null,
+        "onmouseenter": null,
+        "onmouseleave": null,
+        "onmousemove": null,
+        "onmouseout": null,
+        "onmouseover": null,
+        "onmouseup": null,
+        "onmousewheel": null,
+        "onpause": null,
+        "onplay": null,
+        "onplaying": null,
+        "onprogress": null,
+        "onratechange": null,
+        "onreset": null,
+        "onresize": null,
+        "onscroll": null,
+        "onscrollend": null,
+        "onsecuritypolicyviolation": null,
+        "onseeked": null,
+        "onseeking": null,
+        "onselect": null,
+        "onslotchange": null,
+        "onstalled": null,
+        "onsubmit": null,
+        "onsuspend": null,
+        "ontimeupdate": null,
+        "ontoggle": null,
+        "onvolumechange": null,
+        "onwaiting": null,
+        "onwebkitanimationend": null,
+        "onwebkitanimationiteration": null,
+        "onwebkitanimationstart": null,
+        "onwebkittransitionend": null,
+        "onwheel": null,
+        "onauxclick": null,
+        "ongotpointercapture": null,
+        "onlostpointercapture": null,
+        "onpointerdown": null,
+        "onpointermove": null,
+        "onpointerup": null,
+        "onpointercancel": null,
+        "onpointerover": null,
+        "onpointerout": null,
+        "onpointerenter": null,
+        "onpointerleave": null,
+        "onselectstart": null,
+        "onselectionchange": null,
+        "onanimationend": null,
+        "onanimationiteration": null,
+        "onanimationstart": null,
+        "ontransitionrun": null,
+        "ontransitionstart": null,
+        "ontransitionend": null,
+        "ontransitioncancel": null,
+        "onafterprint": null,
+        "onbeforeprint": null,
+        "onbeforeunload": null,
+        "onhashchange": null,
+        "onlanguagechange": null,
+        "onmessage": null,
+        "onmessageerror": null,
+        "onoffline": null,
+        "ononline": null,
+        "onpagehide": null,
+        "onpageshow": null,
+        "onpopstate": null,
+        "onrejectionhandled": null,
+        "onstorage": null,
+        "onunhandledrejection": null,
+        "onunload": null,
+        "isSecureContext": true,
+        "crossOriginIsolated": false,
+        "scheduler": {},
+        "performance": {},
+        "trustedTypes": {},
+        "indexedDB": {},
+        "localStorage": {
+          "cart": "[{\"id\":1,\"name\":\"Arduino UNO Starter Kit\",\"price\":6000,\"category\":\"DIY Kits\",\"image\":\"https://via.placeholder.com/300x300?text=Arduino+UNO\",\"description\":\"Complete Arduino UNO starter kit with tutorials and components\",\"specifications\":\"ATmega328P, USB Type-B, 14 Digital I/O, 6 Analog Inputs\",\"related\":[2,3,4]}]",
+          "pkat_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NjYwNjczMzAxMzkiLCJlbWFpbCI6InBrLmF1dG9tYXRpb25zLmtlQGdtYWlsLmNvbSIsIm5hbWUiOiJwZWFrYXkiLCJyb2xlIjoic3VwZXIiLCJpYXQiOjE3NjYyNTg1NzMsImV4cCI6MTc2Njg2MzM3M30.E3wzEDaOEbJrxuB4flYqTGgvzlYDdAqY2ORDKKkYw9M",
+          "ally-supports-cache": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\",\"version\":\"1.4.1\",\"focusAreaImgTabindex\":false,\"focusAreaTabindex\":false,\"focusAreaWithoutHref\":false,\"focusAudioWithoutControls\":false,\"focusBrokenImageMap\":true,\"focusChildrenOfFocusableFlexbox\":false,\"focusFieldsetDisabled\":true,\"focusFieldset\":false,\"focusFlexboxContainer\":false,\"focusFormDisabled\":true,\"focusImgIsmap\":false,\"focusImgUsemapTabindex\":true,\"focusInHiddenIframe\":true,\"focusInvalidTabindex\":false,\"focusLabelTabindex\":true,\"focusObjectSvg\":true,\"focusObjectSvgHidden\":false,\"focusRedirectImgUsemap\":false,\"focusRedirectLegend\":\"\",\"focusScrollBody\":false,\"focusScrollContainerWithoutOverflow\":false,\"focusScrollContainer\":true,\"focusSummary\":true,\"focusSvgFocusableAttribute\":false,\"focusSvgTabindexAttribute\":true,\"focusSvgNegativeTabindexAttribute\":true,\"focusSvgUseTabindex\":true,\"focusSvgForeignobjectTabindex\":true,\"focusSvg\":false,\"focusTabindexTrailingCharacters\":true,\"focusTable\":false,\"focusVideoWithoutControls\":false,\"cssShadowPiercingDeepCombinator\":\"\",\"focusInZeroDimensionObject\":true,\"focusObjectSwf\":true,\"focusSvgInIframe\":false,\"tabsequenceAreaAtImgPosition\":false,\"time\":\"2025-12-11T17:28:33.873Z\"}",
+          "pkat_admin_edit": "1"
+        },
+        "sessionStorage": {},
+        "chrome": {
+          "app": {
+            "isInstalled": false,
+            "InstallState": {
+              "DISABLED": "disabled",
+              "INSTALLED": "installed",
+              "NOT_INSTALLED": "not_installed"
+            },
+            "RunningState": {
+              "CANNOT_RUN": "cannot_run",
+              "READY_TO_RUN": "ready_to_run",
+              "RUNNING": "running"
+            }
+          }
+        },
+        "cookieStore": {},
+        "ondevicemotion": null,
+        "ondeviceorientation": null,
+        "ondeviceorientationabsolute": null,
+        "onpointerrawupdate": null,
+        "caches": {},
+        "documentPictureInPicture": {},
+        "sharedStorage": {},
+        "originAgentCluster": true,
+        "viewport": {},
+        "onpageswap": null,
+        "onpagereveal": null,
+        "credentialless": false,
+        "fence": null,
+        "launchQueue": {},
+        "speechSynthesis": {},
+        "onscrollsnapchange": null,
+        "onscrollsnapchanging": null,
+        "ongamepadconnected": null,
+        "ongamepaddisconnected": null,
+        "webpackChunk_N_E": [
+          [
+            [
+              "app-pages-internals"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/layout"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/student-hub/page"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "main-app"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/contact/page"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/about/page"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/services/page"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/services/[id]/page"
+            ],
+            {},
+            null
+          ]
+        ],
+        "$RefreshHelpers$": {},
+        "next": {
+          "version": "14.2.33",
+          "appDir": true,
+          "router": {}
+        },
+        "nd": {
+          "cache": {
+            "lazyData": null,
+            "rsc": [
+              [
+                [
+                  {
+                    "type": "link",
+                    "key": "0",
+                    "ref": null,
+                    "props": {
+                      "rel": "stylesheet",
+                      "href": "/_next/static/css/app/layout.css?v=1766417258447",
+                      "precedence": "next_static/css/app/layout.css"
+                    }
+                  }
+                ],
+                {
+                  "type": "html",
+                  "key": null,
+                  "ref": null,
+                  "props": {
+                    "lang": "en",
+                    "children": [
+                      {
+                        "type": "head",
+                        "key": null,
+                        "ref": null,
+                        "props": {
+                          "children": [
+                            {
+                              "type": "meta",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "charSet": "utf-8"
+                              }
+                            },
+                            {
+                              "type": "meta",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "name": "viewport",
+                                "content": "width=device-width, initial-scale=1"
+                              }
+                            },
+                            {
+                              "type": "link",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "href": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap",
+                                "rel": "stylesheet"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "body",
+                        "key": null,
+                        "ref": null,
+                        "props": {
+                          "children": [
+                            {
+                              "type": {},
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "parallelRouterKey": "children",
+                                "segmentPath": [
+                                  "children"
+                                ],
+                                "template": {
+                                  "type": {},
+                                  "key": null,
+                                  "ref": null,
+                                  "props": {}
+                                },
+                                "notFound": [
+                                  {
+                                    "type": "title",
+                                    "key": null,
+                                    "ref": null,
+                                    "props": {
+                                      "children": "404: This page could not be found."
+                                    }
+                                  },
+                                  {
+                                    "type": "div",
+                                    "key": null,
+                                    "ref": null,
+                                    "props": {
+                                      "style": {
+                                        "fontFamily": "system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"",
+                                        "height": "100vh",
+                                        "textAlign": "center",
+                                        "display": "flex",
+                                        "flexDirection": "column",
+                                        "alignItems": "center",
+                                        "justifyContent": "center"
+                                      },
+                                      "children": {
+                                        "type": "div",
+                                        "key": null,
+                                        "ref": null,
+                                        "props": {
+                                          "children": [
+                                            {
+                                              "type": "style",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "dangerouslySetInnerHTML": {}
+                                              }
+                                            },
+                                            {
+                                              "type": "h1",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "className": "next-error-h1",
+                                                "style": {
+                                                  "display": "inline-block",
+                                                  "margin": "0 20px 0 0",
+                                                  "padding": "0 23px 0 0",
+                                                  "fontSize": 24,
+                                                  "fontWeight": 500,
+                                                  "verticalAlign": "top",
+                                                  "lineHeight": "49px"
+                                                },
+                                                "children": "404"
+                                              }
+                                            },
+                                            {
+                                              "type": "div",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "style": {
+                                                  "display": "inline-block"
+                                                },
+                                                "children": {
+                                                  "type": "h2",
+                                                  "key": null,
+                                                  "ref": null,
+                                                  "props": {
+                                                    "style": {
+                                                      "fontSize": 14,
+                                                      "fontWeight": 400,
+                                                      "lineHeight": "49px",
+                                                      "margin": 0
+                                                    },
+                                                    "children": "This page could not be found."
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  }
+                                ],
+                                "notFoundStyles": []
+                              }
+                            },
+                            {
+                              "type": {},
+                              "key": null,
+                              "ref": null,
+                              "props": {}
+                            },
+                            {
+                              "type": {},
+                              "key": null,
+                              "ref": null,
+                              "props": {}
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              null
+            ],
+            "prefetchRsc": null,
+            "head": null,
+            "prefetchHead": null,
+            "parallelRoutes": {},
+            "lazyDataResolved": false,
+            "loading": null
+          },
+          "prefetchCache": {},
+          "tree": [
+            "",
+            {
+              "children": [
+                "services",
+                {
+                  "children": [
+                    "__PAGE__",
+                    {},
+                    "/services",
+                    "refresh"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        }
+      },
+      "detail": 1,
+      "screenX": 214,
+      "screenY": 646,
+      "clientX": 210,
+      "clientY": 566,
+      "pageX": 210,
+      "pageY": 796,
+      "ctrlKey": false,
+      "shiftKey": false,
+      "altKey": false,
+      "metaKey": false,
+      "button": 0,
+      "buttons": 0,
+      "relatedTarget": null,
+      "movementX": 0,
+      "movementY": 0
+    },
+    {
+      "id": 2,
+      "name": "Student Project Assistance",
+      "description": "Consultation, coding help, and simulation support for student projects across all engineering disciplines",
+      "category": "Services",
+      "price": "KSh 3,000+",
+      "image": "https://via.placeholder.com/300x200?text=Consultation",
+      "specifications": "Project guidance, Code review, Simulations, Documentation",
+      "publishWork": false,
+      "type": "click",
+      "nativeEvent": {
+        "isTrusted": true
+      },
+      "eventPhase": 3,
+      "bubbles": true,
+      "cancelable": true,
+      "timeStamp": 15575.700000001118,
+      "defaultPrevented": false,
+      "isTrusted": true,
+      "view": {
+        "name": "",
+        "location": {
+          "ancestorOrigins": {},
+          "href": "http://localhost:3000/services",
+          "origin": "http://localhost:3000",
+          "protocol": "http:",
+          "host": "localhost:3000",
+          "hostname": "localhost",
+          "port": "3000",
+          "pathname": "/services",
+          "search": "",
+          "hash": ""
+        },
+        "customElements": {},
+        "history": {},
+        "navigation": {},
+        "locationbar": {},
+        "menubar": {},
+        "personalbar": {},
+        "scrollbars": {},
+        "statusbar": {},
+        "toolbar": {},
+        "status": "",
+        "closed": false,
+        "length": 0,
+        "opener": null,
+        "frameElement": null,
+        "navigator": {},
+        "origin": "http://localhost:3000",
+        "external": {},
+        "screen": {},
+        "innerWidth": 1272,
+        "innerHeight": 635,
+        "scrollX": 0,
+        "pageXOffset": 0,
+        "scrollY": 580.6666870117188,
+        "pageYOffset": 580.6666870117188,
+        "visualViewport": {},
+        "screenX": 0,
+        "screenY": 0,
+        "outerWidth": 1280,
+        "outerHeight": 720,
+        "devicePixelRatio": 1.5,
+        "screenLeft": 0,
+        "screenTop": 0,
+        "styleMedia": {},
+        "onsearch": null,
+        "onappinstalled": null,
+        "onbeforeinstallprompt": null,
+        "crypto": {},
+        "onbeforexrselect": null,
+        "onabort": null,
+        "onbeforeinput": null,
+        "onbeforematch": null,
+        "onbeforetoggle": null,
+        "onblur": null,
+        "oncancel": null,
+        "oncanplay": null,
+        "oncanplaythrough": null,
+        "onchange": null,
+        "onclick": null,
+        "onclose": null,
+        "oncommand": null,
+        "oncontentvisibilityautostatechange": null,
+        "oncontextlost": null,
+        "oncontextmenu": null,
+        "oncontextrestored": null,
+        "oncuechange": null,
+        "ondblclick": null,
+        "ondrag": null,
+        "ondragend": null,
+        "ondragenter": null,
+        "ondragleave": null,
+        "ondragover": null,
+        "ondragstart": null,
+        "ondrop": null,
+        "ondurationchange": null,
+        "onemptied": null,
+        "onended": null,
+        "onerror": null,
+        "onfocus": null,
+        "onformdata": null,
+        "oninput": null,
+        "oninvalid": null,
+        "onkeydown": null,
+        "onkeypress": null,
+        "onkeyup": null,
+        "onload": null,
+        "onloadeddata": null,
+        "onloadedmetadata": null,
+        "onloadstart": null,
+        "onmousedown": null,
+        "onmouseenter": null,
+        "onmouseleave": null,
+        "onmousemove": null,
+        "onmouseout": null,
+        "onmouseover": null,
+        "onmouseup": null,
+        "onmousewheel": null,
+        "onpause": null,
+        "onplay": null,
+        "onplaying": null,
+        "onprogress": null,
+        "onratechange": null,
+        "onreset": null,
+        "onresize": null,
+        "onscroll": null,
+        "onscrollend": null,
+        "onsecuritypolicyviolation": null,
+        "onseeked": null,
+        "onseeking": null,
+        "onselect": null,
+        "onslotchange": null,
+        "onstalled": null,
+        "onsubmit": null,
+        "onsuspend": null,
+        "ontimeupdate": null,
+        "ontoggle": null,
+        "onvolumechange": null,
+        "onwaiting": null,
+        "onwebkitanimationend": null,
+        "onwebkitanimationiteration": null,
+        "onwebkitanimationstart": null,
+        "onwebkittransitionend": null,
+        "onwheel": null,
+        "onauxclick": null,
+        "ongotpointercapture": null,
+        "onlostpointercapture": null,
+        "onpointerdown": null,
+        "onpointermove": null,
+        "onpointerup": null,
+        "onpointercancel": null,
+        "onpointerover": null,
+        "onpointerout": null,
+        "onpointerenter": null,
+        "onpointerleave": null,
+        "onselectstart": null,
+        "onselectionchange": null,
+        "onanimationend": null,
+        "onanimationiteration": null,
+        "onanimationstart": null,
+        "ontransitionrun": null,
+        "ontransitionstart": null,
+        "ontransitionend": null,
+        "ontransitioncancel": null,
+        "onafterprint": null,
+        "onbeforeprint": null,
+        "onbeforeunload": null,
+        "onhashchange": null,
+        "onlanguagechange": null,
+        "onmessage": null,
+        "onmessageerror": null,
+        "onoffline": null,
+        "ononline": null,
+        "onpagehide": null,
+        "onpageshow": null,
+        "onpopstate": null,
+        "onrejectionhandled": null,
+        "onstorage": null,
+        "onunhandledrejection": null,
+        "onunload": null,
+        "isSecureContext": true,
+        "crossOriginIsolated": false,
+        "scheduler": {},
+        "performance": {},
+        "trustedTypes": {},
+        "indexedDB": {},
+        "localStorage": {
+          "cart": "[{\"id\":1,\"name\":\"Arduino UNO Starter Kit\",\"price\":6000,\"category\":\"DIY Kits\",\"image\":\"https://via.placeholder.com/300x300?text=Arduino+UNO\",\"description\":\"Complete Arduino UNO starter kit with tutorials and components\",\"specifications\":\"ATmega328P, USB Type-B, 14 Digital I/O, 6 Analog Inputs\",\"related\":[2,3,4]}]",
+          "pkat_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NjYwNjczMzAxMzkiLCJlbWFpbCI6InBrLmF1dG9tYXRpb25zLmtlQGdtYWlsLmNvbSIsIm5hbWUiOiJwZWFrYXkiLCJyb2xlIjoic3VwZXIiLCJpYXQiOjE3NjYyNTg1NzMsImV4cCI6MTc2Njg2MzM3M30.E3wzEDaOEbJrxuB4flYqTGgvzlYDdAqY2ORDKKkYw9M",
+          "ally-supports-cache": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\",\"version\":\"1.4.1\",\"focusAreaImgTabindex\":false,\"focusAreaTabindex\":false,\"focusAreaWithoutHref\":false,\"focusAudioWithoutControls\":false,\"focusBrokenImageMap\":true,\"focusChildrenOfFocusableFlexbox\":false,\"focusFieldsetDisabled\":true,\"focusFieldset\":false,\"focusFlexboxContainer\":false,\"focusFormDisabled\":true,\"focusImgIsmap\":false,\"focusImgUsemapTabindex\":true,\"focusInHiddenIframe\":true,\"focusInvalidTabindex\":false,\"focusLabelTabindex\":true,\"focusObjectSvg\":true,\"focusObjectSvgHidden\":false,\"focusRedirectImgUsemap\":false,\"focusRedirectLegend\":\"\",\"focusScrollBody\":false,\"focusScrollContainerWithoutOverflow\":false,\"focusScrollContainer\":true,\"focusSummary\":true,\"focusSvgFocusableAttribute\":false,\"focusSvgTabindexAttribute\":true,\"focusSvgNegativeTabindexAttribute\":true,\"focusSvgUseTabindex\":true,\"focusSvgForeignobjectTabindex\":true,\"focusSvg\":false,\"focusTabindexTrailingCharacters\":true,\"focusTable\":false,\"focusVideoWithoutControls\":false,\"cssShadowPiercingDeepCombinator\":\"\",\"focusInZeroDimensionObject\":true,\"focusObjectSwf\":true,\"focusSvgInIframe\":false,\"tabsequenceAreaAtImgPosition\":false,\"time\":\"2025-12-11T17:28:33.873Z\"}",
+          "pkat_admin_edit": "1"
+        },
+        "sessionStorage": {},
+        "chrome": {
+          "app": {
+            "isInstalled": false,
+            "InstallState": {
+              "DISABLED": "disabled",
+              "INSTALLED": "installed",
+              "NOT_INSTALLED": "not_installed"
+            },
+            "RunningState": {
+              "CANNOT_RUN": "cannot_run",
+              "READY_TO_RUN": "ready_to_run",
+              "RUNNING": "running"
+            }
+          }
+        },
+        "cookieStore": {},
+        "ondevicemotion": null,
+        "ondeviceorientation": null,
+        "ondeviceorientationabsolute": null,
+        "onpointerrawupdate": null,
+        "caches": {},
+        "documentPictureInPicture": {},
+        "sharedStorage": {},
+        "originAgentCluster": true,
+        "viewport": {},
+        "onpageswap": null,
+        "onpagereveal": null,
+        "credentialless": false,
+        "fence": null,
+        "launchQueue": {},
+        "speechSynthesis": {},
+        "onscrollsnapchange": null,
+        "onscrollsnapchanging": null,
+        "ongamepadconnected": null,
+        "ongamepaddisconnected": null,
+        "webpackChunk_N_E": [
+          [
+            [
+              "app-pages-internals"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/services/page"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/layout"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "main-app"
+            ],
+            {},
+            null
+          ]
+        ],
+        "$RefreshHelpers$": {},
+        "next": {
+          "version": "14.2.33",
+          "appDir": true,
+          "router": {}
+        },
+        "nd": {
+          "cache": {
+            "lazyData": null,
+            "rsc": [
+              [
+                [
+                  {
+                    "type": "link",
+                    "key": "0",
+                    "ref": null,
+                    "props": {
+                      "rel": "stylesheet",
+                      "href": "/_next/static/css/app/layout.css?v=1766417286768",
+                      "precedence": "next_static/css/app/layout.css"
+                    }
+                  }
+                ],
+                {
+                  "type": "html",
+                  "key": null,
+                  "ref": null,
+                  "props": {
+                    "lang": "en",
+                    "children": [
+                      {
+                        "type": "head",
+                        "key": null,
+                        "ref": null,
+                        "props": {
+                          "children": [
+                            {
+                              "type": "meta",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "charSet": "utf-8"
+                              }
+                            },
+                            {
+                              "type": "meta",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "name": "viewport",
+                                "content": "width=device-width, initial-scale=1"
+                              }
+                            },
+                            {
+                              "type": "link",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "href": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap",
+                                "rel": "stylesheet"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "body",
+                        "key": null,
+                        "ref": null,
+                        "props": {
+                          "children": [
+                            {
+                              "type": {},
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "parallelRouterKey": "children",
+                                "segmentPath": [
+                                  "children"
+                                ],
+                                "template": {
+                                  "type": {},
+                                  "key": null,
+                                  "ref": null,
+                                  "props": {}
+                                },
+                                "notFound": [
+                                  {
+                                    "type": "title",
+                                    "key": null,
+                                    "ref": null,
+                                    "props": {
+                                      "children": "404: This page could not be found."
+                                    }
+                                  },
+                                  {
+                                    "type": "div",
+                                    "key": null,
+                                    "ref": null,
+                                    "props": {
+                                      "style": {
+                                        "fontFamily": "system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"",
+                                        "height": "100vh",
+                                        "textAlign": "center",
+                                        "display": "flex",
+                                        "flexDirection": "column",
+                                        "alignItems": "center",
+                                        "justifyContent": "center"
+                                      },
+                                      "children": {
+                                        "type": "div",
+                                        "key": null,
+                                        "ref": null,
+                                        "props": {
+                                          "children": [
+                                            {
+                                              "type": "style",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "dangerouslySetInnerHTML": {}
+                                              }
+                                            },
+                                            {
+                                              "type": "h1",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "className": "next-error-h1",
+                                                "style": {
+                                                  "display": "inline-block",
+                                                  "margin": "0 20px 0 0",
+                                                  "padding": "0 23px 0 0",
+                                                  "fontSize": 24,
+                                                  "fontWeight": 500,
+                                                  "verticalAlign": "top",
+                                                  "lineHeight": "49px"
+                                                },
+                                                "children": "404"
+                                              }
+                                            },
+                                            {
+                                              "type": "div",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "style": {
+                                                  "display": "inline-block"
+                                                },
+                                                "children": {
+                                                  "type": "h2",
+                                                  "key": null,
+                                                  "ref": null,
+                                                  "props": {
+                                                    "style": {
+                                                      "fontSize": 14,
+                                                      "fontWeight": 400,
+                                                      "lineHeight": "49px",
+                                                      "margin": 0
+                                                    },
+                                                    "children": "This page could not be found."
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  }
+                                ],
+                                "notFoundStyles": []
+                              }
+                            },
+                            {
+                              "type": {},
+                              "key": null,
+                              "ref": null,
+                              "props": {}
+                            },
+                            {
+                              "type": {},
+                              "key": null,
+                              "ref": null,
+                              "props": {}
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              null
+            ],
+            "prefetchRsc": null,
+            "head": null,
+            "prefetchHead": null,
+            "parallelRoutes": {},
+            "lazyDataResolved": false,
+            "loading": null
+          },
+          "prefetchCache": {},
+          "tree": [
+            "",
+            {
+              "children": [
+                "services",
+                {
+                  "children": [
+                    "__PAGE__",
+                    {},
+                    "/services",
+                    "refresh"
+                  ]
+                }
+              ]
+            },
+            true
+          ]
+        }
+      },
+      "detail": 1,
+      "screenX": 208,
+      "screenY": 631,
+      "clientX": 204,
+      "clientY": 551,
+      "pageX": 204,
+      "pageY": 1132,
+      "ctrlKey": false,
+      "shiftKey": false,
+      "altKey": false,
+      "metaKey": false,
+      "button": 0,
+      "buttons": 0,
+      "relatedTarget": null,
+      "movementX": 0,
+      "movementY": 0
+    },
+    {
+      "id": 3,
+      "name": "Automation & IoT Solutions",
+      "description": "Design and implementation of automation and IoT systems for industrial and smart applications",
+      "category": "Services",
+      "price": "Quotation based",
+      "image": "https://via.placeholder.com/300x200?text=Automation",
+      "specifications": "System design, Hardware integration, Cloud setup, 24/7 monitoring",
+      "publishWork": false
+    },
+    {
+      "id": 4,
+      "name": "Web Development & Graphics Design",
+      "description": "Custom website development, mobile apps, and professional graphics design services",
+      "category": "Services",
+      "price": "Quotation based",
+      "image": "https://via.placeholder.com/300x200?text=Web+Dev",
+      "specifications": "Responsive design, Custom development, SEO optimization, UI/UX design",
+      "publishWork": false
+    },
+    {
+      "id": 5,
+      "name": "Biomedical Engineering",
+      "description": "Equipment servicing, calibration, and maintenance for medical devices and diagnostic equipment",
+      "category": "Services",
+      "price": "Quotation based",
+      "image": "https://via.placeholder.com/300x200?text=Biomedical",
+      "specifications": "Device maintenance, Calibration, Training, Compliance audits",
+      "publishWork": false
+    },
+    {
+      "id": 6,
+      "name": "Electrical Installation & Repair",
+      "description": "Professional electrical installation, maintenance, and repair services for residential and commercial properties",
+      "category": "Services",
+      "price": "Quotation based",
+      "image": "https://via.placeholder.com/300x200?text=Electrical",
+      "specifications": "Circuit design, Safety inspection, Fault diagnosis, Emergency repairs",
+      "publishWork": false
+    }
+  ]
+}

@@ -1,0 +1,717 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "title": "Home",
+      "slug": "home",
+      "heroTitle": "Innovate. Automate. Elevate.",
+      "heroSubtitle": "Your trusted partner in electronics, automation, and innovation. Quality products and expert services.",
+      "ctaPrimaryText": "Shop Components",
+      "ctaPrimaryHref": "/shop",
+      "ctaSecondaryText": "Explore Services",
+      "ctaSecondaryHref": "/services",
+      "servicesTitle": "Our Services",
+      "studentHubTitle": "Student Hub",
+      "studentHubContent": "Everything you need to succeed in your engineering projects. Consultation, coding help, simulations, and more.",
+      "studentHubImage": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766431336/pk-uploads/1766431306670-pk1-crop.jpg.jpg",
+      "studentHubCTAText": "Explore Student Hub",
+      "studentHubCTAHref": "/student-hub",
+      "studentHubBullets": [
+        {
+          "name": "Project Consultation & Guidance",
+          "desc": "none"
+        },
+        {
+          "name": "Proteus/Multisim Support",
+          "desc": "none"
+        },
+        {
+          "name": "AutoCAD floor plan drawings",
+          "desc": "none"
+        },
+        {
+          "name": "Custom Project Kits",
+          "desc": "nne"
+        }
+      ],
+      "testimonialsTitle": "What Our Customers Say",
+      "studentTestimonials": [
+        {
+          "name": "Amina Mwangi",
+          "project": "Solar Charger Kit",
+          "story": "The guidance and kit from PK Automations helped me build a reliable solar charger for my community project.",
+          "avatar": "",
+          "rating": 5
+        },
+        {
+          "name": "James Otieno",
+          "project": "Automated Irrigation",
+          "story": "Their sensor recommendations and support reduced water usage and increased yield on my farm.",
+          "avatar": "",
+          "rating": 5
+        },
+        {
+          "name": "David Omondi",
+          "project": "Robotics Project",
+          "story": "The project consultation and component selection made my drone project a success.",
+          "avatar": "",
+          "rating": 5
+        },
+        {
+          "name": "sam",
+          "project": "auto",
+          "story": "really helpful",
+          "avatar": "",
+          "rating": 5
+        }
+      ],
+      "ctaSectionTitle": "Ready to Get Started?",
+      "ctaSectionText": "Join thousands of customers who trust PK Automations for their electronics and automation needs.",
+      "ctaSectionPrimaryText": "Start Shopping",
+      "ctaSectionSecondaryText": "Contact Us",
+      "heroImage": "",
+      "content": "",
+      "image": "",
+      "consultationTitle": "nil",
+      "consultationContent": "test",
+      "consultationImage": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766415889/pk-uploads/1766415860455-gk.jpg.jpg",
+      "consultationBullets": [
+        "test test"
+      ],
+      "_reactName": "onClick",
+      "_targetInst": null,
+      "type": "click",
+      "nativeEvent": {
+        "isTrusted": true
+      },
+      "eventPhase": 3,
+      "bubbles": true,
+      "cancelable": true,
+      "timeStamp": 22520.099999997765,
+      "defaultPrevented": false,
+      "isTrusted": true,
+      "view": {
+        "name": "",
+        "location": {
+          "ancestorOrigins": {},
+          "href": "http://localhost:3001/",
+          "origin": "http://localhost:3001",
+          "protocol": "http:",
+          "host": "localhost:3001",
+          "hostname": "localhost",
+          "port": "3001",
+          "pathname": "/",
+          "search": "",
+          "hash": ""
+        },
+        "customElements": {},
+        "history": {},
+        "navigation": {},
+        "locationbar": {},
+        "menubar": {},
+        "personalbar": {},
+        "scrollbars": {},
+        "statusbar": {},
+        "toolbar": {},
+        "status": "",
+        "closed": false,
+        "length": 0,
+        "opener": null,
+        "frameElement": null,
+        "navigator": {},
+        "origin": "http://localhost:3001",
+        "external": {},
+        "screen": {},
+        "innerWidth": 1272,
+        "innerHeight": 635,
+        "scrollX": 0,
+        "pageXOffset": 0,
+        "scrollY": 313.3333435058594,
+        "pageYOffset": 313.3333435058594,
+        "visualViewport": {},
+        "screenX": 0,
+        "screenY": 0,
+        "outerWidth": 1280,
+        "outerHeight": 720,
+        "devicePixelRatio": 1.5,
+        "screenLeft": 0,
+        "screenTop": 0,
+        "styleMedia": {},
+        "onsearch": null,
+        "onappinstalled": null,
+        "onbeforeinstallprompt": null,
+        "crypto": {},
+        "onbeforexrselect": null,
+        "onabort": null,
+        "onbeforeinput": null,
+        "onbeforematch": null,
+        "onbeforetoggle": null,
+        "onblur": null,
+        "oncancel": null,
+        "oncanplay": null,
+        "oncanplaythrough": null,
+        "onchange": null,
+        "onclick": null,
+        "onclose": null,
+        "oncommand": null,
+        "oncontentvisibilityautostatechange": null,
+        "oncontextlost": null,
+        "oncontextmenu": null,
+        "oncontextrestored": null,
+        "oncuechange": null,
+        "ondblclick": null,
+        "ondrag": null,
+        "ondragend": null,
+        "ondragenter": null,
+        "ondragleave": null,
+        "ondragover": null,
+        "ondragstart": null,
+        "ondrop": null,
+        "ondurationchange": null,
+        "onemptied": null,
+        "onended": null,
+        "onerror": null,
+        "onfocus": null,
+        "onformdata": null,
+        "oninput": null,
+        "oninvalid": null,
+        "onkeydown": null,
+        "onkeypress": null,
+        "onkeyup": null,
+        "onload": null,
+        "onloadeddata": null,
+        "onloadedmetadata": null,
+        "onloadstart": null,
+        "onmousedown": null,
+        "onmouseenter": null,
+        "onmouseleave": null,
+        "onmousemove": null,
+        "onmouseout": null,
+        "onmouseover": null,
+        "onmouseup": null,
+        "onmousewheel": null,
+        "onpause": null,
+        "onplay": null,
+        "onplaying": null,
+        "onprogress": null,
+        "onratechange": null,
+        "onreset": null,
+        "onresize": null,
+        "onscroll": null,
+        "onscrollend": null,
+        "onsecuritypolicyviolation": null,
+        "onseeked": null,
+        "onseeking": null,
+        "onselect": null,
+        "onslotchange": null,
+        "onstalled": null,
+        "onsubmit": null,
+        "onsuspend": null,
+        "ontimeupdate": null,
+        "ontoggle": null,
+        "onvolumechange": null,
+        "onwaiting": null,
+        "onwebkitanimationend": null,
+        "onwebkitanimationiteration": null,
+        "onwebkitanimationstart": null,
+        "onwebkittransitionend": null,
+        "onwheel": null,
+        "onauxclick": null,
+        "ongotpointercapture": null,
+        "onlostpointercapture": null,
+        "onpointerdown": null,
+        "onpointermove": null,
+        "onpointerup": null,
+        "onpointercancel": null,
+        "onpointerover": null,
+        "onpointerout": null,
+        "onpointerenter": null,
+        "onpointerleave": null,
+        "onselectstart": null,
+        "onselectionchange": null,
+        "onanimationend": null,
+        "onanimationiteration": null,
+        "onanimationstart": null,
+        "ontransitionrun": null,
+        "ontransitionstart": null,
+        "ontransitionend": null,
+        "ontransitioncancel": null,
+        "onafterprint": null,
+        "onbeforeprint": null,
+        "onbeforeunload": null,
+        "onhashchange": null,
+        "onlanguagechange": null,
+        "onmessage": null,
+        "onmessageerror": null,
+        "onoffline": null,
+        "ononline": null,
+        "onpagehide": null,
+        "onpageshow": null,
+        "onpopstate": null,
+        "onrejectionhandled": null,
+        "onstorage": null,
+        "onunhandledrejection": null,
+        "onunload": null,
+        "isSecureContext": true,
+        "crossOriginIsolated": false,
+        "scheduler": {},
+        "performance": {},
+        "trustedTypes": {},
+        "indexedDB": {},
+        "localStorage": {
+          "cart": "[{\"id\":1,\"name\":\"Arduino UNO Starter Kit\",\"price\":6000,\"category\":\"DIY Kits\",\"image\":\"https://via.placeholder.com/300x300?text=Arduino+UNO\",\"description\":\"Complete Arduino UNO starter kit with tutorials and components\",\"specifications\":\"ATmega328P, USB Type-B, 14 Digital I/O, 6 Analog Inputs\",\"related\":[2,3,4]},{\"id\":1,\"name\":\"Arduino UNO Starter Kit\",\"price\":6000,\"category\":\"DIY Kits\",\"image\":\"/uploads/1766124634582-uno.jpg\",\"description\":\"Complete Arduino UNO starter kit with tutorials and components\",\"specifications\":\"ATmega328P, USB Type-B, 14 Digital I/O, 6 Analog Inputs\",\"related\":[2,3,4]},{\"id\":2,\"name\":\"Raspberry Pi 4 Kit\",\"price\":8500,\"category\":\"DIY Kits\",\"image\":\"https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766132684/pk-uploads/1766132661234-dc.jpg.jpg\",\"description\":\"Powerful single-board computer kit for IoT and automation projects\",\"specifications\":\"4GB RAM, Quad-core ARM, Wi-Fi, Bluetooth, 4K HDMI\",\"related\":[1,5,6]}]",
+          "pkat_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE3NjYwNjczMzAxMzkiLCJlbWFpbCI6InBrLmF1dG9tYXRpb25zLmtlQGdtYWlsLmNvbSIsIm5hbWUiOiJwZWFrYXkiLCJyb2xlIjoic3VwZXIiLCJpYXQiOjE3NjY0MjYzNjIsImV4cCI6MTc2NzAzMTE2Mn0.8Zf5KIWQFflVlUH4QBFgRKowTmY6rSy5KfuZrHrLhhk",
+          "ally-supports-cache": "{\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0\",\"version\":\"1.4.1\",\"focusAreaImgTabindex\":false,\"focusAreaTabindex\":false,\"focusAreaWithoutHref\":false,\"focusAudioWithoutControls\":false,\"focusBrokenImageMap\":true,\"focusChildrenOfFocusableFlexbox\":false,\"focusFieldsetDisabled\":true,\"focusFieldset\":false,\"focusFlexboxContainer\":false,\"focusFormDisabled\":true,\"focusImgIsmap\":false,\"focusImgUsemapTabindex\":true,\"focusInHiddenIframe\":true,\"focusInvalidTabindex\":false,\"focusLabelTabindex\":true,\"focusObjectSvg\":true,\"focusObjectSvgHidden\":false,\"focusRedirectImgUsemap\":false,\"focusRedirectLegend\":\"\",\"focusScrollBody\":false,\"focusScrollContainerWithoutOverflow\":false,\"focusScrollContainer\":true,\"focusSummary\":true,\"focusSvgFocusableAttribute\":false,\"focusSvgTabindexAttribute\":true,\"focusSvgNegativeTabindexAttribute\":true,\"focusSvgUseTabindex\":true,\"focusSvgForeignobjectTabindex\":true,\"focusSvg\":false,\"focusTabindexTrailingCharacters\":true,\"focusTable\":false,\"focusVideoWithoutControls\":false,\"cssShadowPiercingDeepCombinator\":\"\",\"focusInZeroDimensionObject\":true,\"focusObjectSwf\":true,\"focusSvgInIframe\":false,\"tabsequenceAreaAtImgPosition\":false,\"time\":\"2025-12-18T15:58:31.079Z\"}",
+          "pkat_admin_edit": "1"
+        },
+        "sessionStorage": {},
+        "chrome": {
+          "app": {
+            "isInstalled": false,
+            "InstallState": {
+              "DISABLED": "disabled",
+              "INSTALLED": "installed",
+              "NOT_INSTALLED": "not_installed"
+            },
+            "RunningState": {
+              "CANNOT_RUN": "cannot_run",
+              "READY_TO_RUN": "ready_to_run",
+              "RUNNING": "running"
+            }
+          }
+        },
+        "cookieStore": {},
+        "ondevicemotion": null,
+        "ondeviceorientation": null,
+        "ondeviceorientationabsolute": null,
+        "onpointerrawupdate": null,
+        "caches": {},
+        "documentPictureInPicture": {},
+        "sharedStorage": {},
+        "originAgentCluster": true,
+        "viewport": {},
+        "onpageswap": null,
+        "onpagereveal": null,
+        "credentialless": false,
+        "fence": null,
+        "launchQueue": {},
+        "speechSynthesis": {},
+        "onscrollsnapchange": null,
+        "onscrollsnapchanging": null,
+        "ongamepadconnected": null,
+        "ongamepaddisconnected": null,
+        "__next_f": [
+          [
+            0
+          ],
+          [
+            2,
+            null
+          ],
+          [
+            1,
+            "1:HL[\"/_next/static/css/app/layout.css?v=1766429362355\",\"style\"]\n0:D{\"name\":\"r2\",\"env\":\"Server\"}\n"
+          ],
+          [
+            1,
+            "2:I[\"(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js\",[\"app-pages-internals\",\"static/chunks/app-pages-internals.js\"],\"\"]\n4:I[\"(app-pages-browser)/./node_modules/next/dist/client/components/client-page.js\",[\"app-pages-internals\",\"static/chunks/app-pages-internals.js\"],\"ClientPageRoot\"]\n5:I[\"(app-pages-browser)/./src/app/page.js\",[\"app/page\",\"static/chunks/app/page.js\"],\"default\",1]\n7:I[\"(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js\",[\"app-pages-internals\",\"static/chunks/app-pages-internals.js\"],\"\"]\n8:I[\"(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js\",[\"app-pages-internals\",\"static/chunks/app-pages-internals.js\"],\"\"]\na:I[\"(app-pages-browser)/./src/components/AdminEditModal.jsx\",[\"app/layout\",\"static/chunks/app/layout.js\"],\"default\"]\nb:I[\"(app-pages-browser)/./src/components/Toast.jsx\",[\"app/layout\",\"static/chunks/app/layout.js\"],\"default\"]\ne:I[\"(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js\",[\"app-pages-internals\",\"static/chunks/app-pages-internals.js\"],\"\"]\n3:D{\"name\":\"\",\"env\":\"Server\"}\n6:D{\"name\":\"RootLayout\",\"env\":\"Server\"}\n9:D{\"name\":\"NotFound\",\"env\":\"Server\"}\n9:[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"vertical"
+          ],
+          [
+            1,
+            "Align\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]]\n6:[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[[\"$\",\"head\",null,{\"children\":[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",null,{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"link\",null,{\"href\":\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap\",\"rel\":\"stylesheet\"}]]}],[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L7\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$9\",\"notFoundStyles\":[]}],[\"$\",\"$La\",null,{}],[\"$\",\"$Lb\",null,{}]]}]]}]\nc:D{\"name\":\"rQ\",\"env\":\"Server\"}\nc:null\nd:D{\"name\":\"\",\"env\":\"Server\"}\nf:[]\n0:[\"$\",\"$L2\",null,{\"buildId\":\"development\",\"assetPrefix\":\"\",\"urlParts\":[\"\",\"\"],\"initialTree\":[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"__PAGE__\",{},[[\"$L3\",[\"$\",\"$L4\",null,{\"props\":{\"params\":{},\"searchParams\":{}},\"Component\":\"$5\"}],null],null],null]},[[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/app/layout.css?v=1766429362355\",\"precedence\":\"next_static/css/app/layout.css\",\"crossOrigin\":\"$undefined\"}]],\"$6\"],null],null],\"couldBeIntercepted\":false,\"initialHead\":[\"$c\",\"$Ld\"],\"globalErrorComponent\":\"$e\",\"missingSlots\":\"$Wf\"}]\n"
+          ],
+          [
+            1,
+            "d:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"PK Automations - Electronics, Services & Solutions\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Leading provider of electronics components, DIY kits, electrical services, biomedical equipment, and web development\"}],[\"$\",\"meta\",\"4\",{\"name\":\"keywords\",\"content\":\"electronics, Arduino, IoT, automation, web development, biomedical\"}]]\n3:null\n"
+          ]
+        ],
+        "webpackChunk_N_E": [
+          [
+            [
+              "app-pages-internals"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/layout"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "app/page"
+            ],
+            {},
+            null
+          ],
+          [
+            [
+              "main-app"
+            ],
+            {},
+            null
+          ]
+        ],
+        "_N_E": {},
+        "__REACT_DEVTOOLS_GLOBAL_HOOK__": {
+          "renderers": {},
+          "supportsFiber": true
+        },
+        "$RefreshHelpers$": {},
+        "next": {
+          "version": "14.2.33",
+          "appDir": true,
+          "router": {}
+        },
+        "nd": {
+          "cache": {
+            "lazyData": null,
+            "rsc": [
+              [
+                [
+                  {
+                    "type": "link",
+                    "key": "0",
+                    "ref": null,
+                    "props": {
+                      "rel": "stylesheet",
+                      "href": "/_next/static/css/app/layout.css?v=1766429362355",
+                      "precedence": "next_static/css/app/layout.css"
+                    },
+                    "_owner": null,
+                    "_store": {}
+                  }
+                ],
+                {
+                  "type": "html",
+                  "key": null,
+                  "ref": null,
+                  "props": {
+                    "lang": "en",
+                    "children": [
+                      {
+                        "type": "head",
+                        "key": null,
+                        "ref": null,
+                        "props": {
+                          "children": [
+                            {
+                              "type": "meta",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "charSet": "utf-8"
+                              },
+                              "_owner": null,
+                              "_store": {}
+                            },
+                            {
+                              "type": "meta",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "name": "viewport",
+                                "content": "width=device-width, initial-scale=1"
+                              },
+                              "_owner": null,
+                              "_store": {}
+                            },
+                            {
+                              "type": "link",
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "href": "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap",
+                                "rel": "stylesheet"
+                              },
+                              "_owner": null,
+                              "_store": {}
+                            }
+                          ]
+                        },
+                        "_owner": null,
+                        "_store": {}
+                      },
+                      {
+                        "type": "body",
+                        "key": null,
+                        "ref": null,
+                        "props": {
+                          "children": [
+                            {
+                              "type": {
+                                "_payload": {
+                                  "status": "fulfilled",
+                                  "reason": null,
+                                  "_response": {
+                                    "_bundlerConfig": null,
+                                    "_moduleLoading": null,
+                                    "_chunks": {},
+                                    "_stringDecoder": {},
+                                    "_rowState": 0,
+                                    "_rowID": 0,
+                                    "_rowTag": 0,
+                                    "_rowLength": 0,
+                                    "_buffer": []
+                                  },
+                                  "_debugInfo": []
+                                }
+                              },
+                              "key": null,
+                              "ref": null,
+                              "props": {
+                                "parallelRouterKey": "children",
+                                "segmentPath": [
+                                  "children"
+                                ],
+                                "template": {
+                                  "type": {
+                                    "_payload": {
+                                      "status": "fulfilled",
+                                      "reason": null,
+                                      "_debugInfo": []
+                                    }
+                                  },
+                                  "key": null,
+                                  "ref": null,
+                                  "props": {},
+                                  "_owner": null,
+                                  "_store": {}
+                                },
+                                "notFound": [
+                                  {
+                                    "type": "title",
+                                    "key": null,
+                                    "ref": null,
+                                    "props": {
+                                      "children": "404: This page could not be found."
+                                    },
+                                    "_owner": null,
+                                    "_store": {}
+                                  },
+                                  {
+                                    "type": "div",
+                                    "key": null,
+                                    "ref": null,
+                                    "props": {
+                                      "style": {
+                                        "fontFamily": "system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"",
+                                        "height": "100vh",
+                                        "textAlign": "center",
+                                        "display": "flex",
+                                        "flexDirection": "column",
+                                        "alignItems": "center",
+                                        "justifyContent": "center"
+                                      },
+                                      "children": {
+                                        "type": "div",
+                                        "key": null,
+                                        "ref": null,
+                                        "props": {
+                                          "children": [
+                                            {
+                                              "type": "style",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "dangerouslySetInnerHTML": {
+                                                  "__html": "body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"
+                                                }
+                                              },
+                                              "_owner": null,
+                                              "_store": {}
+                                            },
+                                            {
+                                              "type": "h1",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "className": "next-error-h1",
+                                                "style": {
+                                                  "display": "inline-block",
+                                                  "margin": "0 20px 0 0",
+                                                  "padding": "0 23px 0 0",
+                                                  "fontSize": 24,
+                                                  "fontWeight": 500,
+                                                  "verticalAlign": "top",
+                                                  "lineHeight": "49px"
+                                                },
+                                                "children": "404"
+                                              },
+                                              "_owner": null,
+                                              "_store": {}
+                                            },
+                                            {
+                                              "type": "div",
+                                              "key": null,
+                                              "ref": null,
+                                              "props": {
+                                                "style": {
+                                                  "display": "inline-block"
+                                                },
+                                                "children": {
+                                                  "type": "h2",
+                                                  "key": null,
+                                                  "ref": null,
+                                                  "props": {
+                                                    "style": {
+                                                      "fontSize": 14,
+                                                      "fontWeight": 400,
+                                                      "lineHeight": "49px",
+                                                      "margin": 0
+                                                    },
+                                                    "children": "This page could not be found."
+                                                  },
+                                                  "_owner": null,
+                                                  "_store": {}
+                                                }
+                                              },
+                                              "_owner": null,
+                                              "_store": {}
+                                            }
+                                          ]
+                                        },
+                                        "_owner": null,
+                                        "_store": {}
+                                      }
+                                    },
+                                    "_owner": null,
+                                    "_store": {}
+                                  }
+                                ],
+                                "notFoundStyles": []
+                              },
+                              "_owner": null,
+                              "_store": {}
+                            },
+                            {
+                              "type": {
+                                "_payload": {
+                                  "status": "fulfilled",
+                                  "reason": null,
+                                  "_debugInfo": []
+                                }
+                              },
+                              "key": null,
+                              "ref": null,
+                              "props": {},
+                              "_owner": null,
+                              "_store": {}
+                            },
+                            {
+                              "type": {
+                                "_payload": {
+                                  "status": "fulfilled",
+                                  "reason": null,
+                                  "_debugInfo": []
+                                }
+                              },
+                              "key": null,
+                              "ref": null,
+                              "props": {},
+                              "_owner": null,
+                              "_store": {}
+                            }
+                          ]
+                        },
+                        "_owner": null,
+                        "_store": {}
+                      }
+                    ]
+                  },
+                  "_owner": null,
+                  "_store": {}
+                }
+              ],
+              null
+            ],
+            "prefetchRsc": null,
+            "head": null,
+            "prefetchHead": null,
+            "parallelRoutes": {},
+            "lazyDataResolved": false,
+            "loading": null
+          },
+          "prefetchCache": {},
+          "tree": [
+            "",
+            {
+              "children": [
+                "__PAGE__",
+                {},
+                "/",
+                "refresh"
+              ]
+            },
+            true
+          ]
+        }
+      },
+      "detail": 1,
+      "screenX": 206,
+      "screenY": 634,
+      "clientX": 202,
+      "clientY": 554,
+      "pageX": 202,
+      "pageY": 868,
+      "ctrlKey": false,
+      "shiftKey": false,
+      "altKey": false,
+      "metaKey": false,
+      "button": 0,
+      "buttons": 0,
+      "relatedTarget": null,
+      "movementX": 0,
+      "movementY": 0
+    },
+    {
+      "id": "about",
+      "title": "About PK Automations",
+      "slug": "about",
+      "content": "PK Automations was founded in 2025 with a simple mission: to make advanced electronics and automation solutions accessible to everyone.\n\nWhat started as a small electronics shop has grown into a comprehensive service provider offering everything from quality components to custom engineering solutions.",
+      "heroImage": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766169451/pk-uploads/1766169426724-bg-1.jpeg.jpg",
+      "image": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766169451/pk-uploads/1766169426724-bg-1.jpeg.jpg",
+      "mission": "To provide high-quality electronics components, innovative solutions, and expert guidance that empower individuals and businesses to innovate and automate.",
+      "vision": "To be the leading electronics and automation solutions provider in East Africa, known for quality, innovation, and customer excellence.",
+      "values": [
+        "Quality & Excellence",
+        "Customer First",
+        "Innovation & Learning",
+        "Reliability & Trust"
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "Contact Us",
+      "slug": "contact",
+      "content": "We'd love to hear from you. Get in touch with our team today.",
+      "heroImage": "https://via.placeholder.com/800x400?text=Contact+Us",
+      "contactPhone": "+254 112 961 056",
+      "contactEmail": "pk.automations.ke@gmail.com",
+      "location": "Nairobi, Kenya\nMunyu Road Business Center",
+      "whatsapp": "+254112961056",
+      "mapEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.823146906827!2d36.80177742346897!3d-1.3029340628620405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f119e76de2f8f%3A0x8c2b5c2c2c2c2c2c!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1700000000000",
+      "quickAnswers": [
+        {
+          "q": "What are your business hours?",
+          "a": "Mon-Fri: 8am-5pm, Sat: 9am-2pm EAT"
+        },
+        {
+          "q": "Do you ship outside Kenya?",
+          "a": "Yes, we ship across East Africa with tracking"
+        },
+        {
+          "q": "What is your return policy?",
+          "a": "30-day money-back guarantee on most products"
+        },
+        {
+          "q": "Do you offer bulk discounts?",
+          "a": "Yes! Contact us for wholesale pricing"
+        }
+      ]
+    }
+  ]
+}

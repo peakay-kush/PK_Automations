@@ -1,0 +1,86 @@
+{
+  "tutorials": [
+    {
+      "id": 1,
+      "title": "Getting Started with Arduino",
+      "slug": "getting-started-with-arduino",
+      "summary": "Learn the basics of Arduino programming and hardware setup",
+      "content": "Complete guide to setting up your first Arduino project...",
+      "category": "Arduino",
+      "image": "",
+      "author": "PK Automations",
+      "images": [
+        ""
+      ],
+      "thumbnail": "",
+      "video": "",
+      "topics": [
+        {
+          "title": "start",
+          "description": "test",
+          "media": [
+            {
+              "type": "image",
+              "url": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766178775/pk-uploads/1766178751047-bg2.jpeg.jpg",
+              "title": "bg2.jpeg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "GSM Module Communication",
+      "slug": "gsm-module-communication",
+      "summary": "Send SMS and make calls using GSM modules with Arduino",
+      "content": "Learn how to integrate GSM modules for IoT connectivity...",
+      "category": "GSM",
+      "image": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766169128/pk-uploads/1766169103754-bg2.jpeg.jpg",
+      "author": "PK Automations",
+      "images": [
+        "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766169128/pk-uploads/1766169103754-bg2.jpeg.jpg"
+      ],
+      "thumbnail": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766169128/pk-uploads/1766169103754-bg2.jpeg.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Sensor Integration Guide",
+      "slug": "sensor-integration-guide",
+      "summary": "Connect and read data from various sensors",
+      "content": "Comprehensive tutorial on sensor interfacing and data logging...",
+      "category": "Sensors",
+      "image": "https://via.placeholder.com/400x250?text=Sensors",
+      "author": "PK Automations"
+    },
+    {
+      "id": 4,
+      "title": "IoT with Raspberry Pi",
+      "slug": "iot-with-raspberry-pi",
+      "summary": "Build complete IoT projects using Raspberry Pi",
+      "content": "Step-by-step guide to IoT development with Python and Node.js...",
+      "category": "IoT",
+      "image": "https://via.placeholder.com/400x250?text=IoT",
+      "author": "PK Automations"
+    },
+    {
+      "id": 5,
+      "title": "Proteus Circuit Simulation",
+      "slug": "proteus-circuit-simulation",
+      "summary": "Design and simulate circuits before building them",
+      "content": "Learn SPICE simulation and PCB layout in Proteus...",
+      "category": "Proteus",
+      "image": "https://via.placeholder.com/400x250?text=Proteus",
+      "author": "PK Automations"
+    },
+    {
+      "id": 6,
+      "title": "Smart Home Automation",
+      "slug": "smart-home-automation",
+      "summary": "Create your own smart home system from scratch",
+      "content": "Build wireless smart home automation systems...",
+      "category": "Smart Home",
+      "image": "https://via.placeholder.com/400x250?text=Smart+Home",
+      "author": "PK Automations"
+    }
+  ]
+}

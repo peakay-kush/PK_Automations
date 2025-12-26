@@ -1,0 +1,7 @@
+{
+  "locations": [
+    { "id": 1, "name": "Nairobi Metro", "matches": ["nairobi", "westlands", "parklands", "kahawa", "langata"], "charge": 300, "note": "Nairobi metropolitan area" },
+    { "id": 2, "name": "Nearby Counties", "matches": ["kiambu", "machakos", "kajiado", "thika", "ngong"], "charge": 600, "note": "Nearby counties" },
+    { "id": 3, "name": "Rest of Kenya", "matches": [], "charge": 1500, "note": "Standard nationwide courier" }
+  ]
+}

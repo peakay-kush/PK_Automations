@@ -1,0 +1,17 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<h1>Register</h1>
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="redirect" value="{{ redirect|default:'' }}" />
+  <label>Name</label>
+  <input type="text" name="name" />
+  <label>Email</label>
+  <input type="email" name="email" required />
+  <label>Password</label>
+  <input type="password" name="password" required />
+  <button type="submit">Register</button>
+  {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+</form>
+{% endblock %}

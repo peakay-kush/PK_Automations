@@ -1,0 +1,18 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PK Automations</title>
+    <link rel="stylesheet" href="{% static 'frontend/css/globals.css' %}">
+  </head>
+  <body>
+    {% include 'frontend/partials/header.html' %}
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    {% include 'frontend/partials/footer.html' %}
+    <script src="{% static 'frontend/js/site.js' %}"></script>
+  </body>
+</html>

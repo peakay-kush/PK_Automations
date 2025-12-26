@@ -1,0 +1,31 @@
+{
+  "team": [
+    {
+      "id": 1,
+      "name": "Peter Kuria",
+      "role": "Founder & CEO",
+      "image": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766431920/pk-uploads/1766431890941-pk1-crop.jpg.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Dennis Hoto",
+      "role": "Technical Lead",
+      "image": "https://via.placeholder.com/200x200?text=Dennis"
+    },
+    {
+      "id": 3,
+      "name": "Grace Wangui",
+      "role": "Sales Manager",
+      "image": "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766213288/pk-uploads/1766213262465-gk-removebg-preview.png.png",
+      "images": [
+        "https://res.cloudinary.com/dhgf5xtqt/image/upload/v1766213288/pk-uploads/1766213262465-gk-removebg-preview.png.png"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Joy Cynthia",
+      "role": "Operations",
+      "image": "https://via.placeholder.com/200x200?text=Joy"
+    }
+  ]
+}

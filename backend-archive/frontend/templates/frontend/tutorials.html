@@ -1,0 +1,15 @@
+{% extends 'frontend/base.html' %}
+
+{% block content %}
+<h1>Tutorials</h1>
+<div class="grid">
+  {% for t in tutorials %}
+    <div class="tutorial-card">
+      <a href="/tutorial/{{ t.id }}/">
+        <h3>{{ t.title }}</h3>
+        <p>{{ t.excerpt }}</p>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
