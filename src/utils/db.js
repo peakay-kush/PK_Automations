@@ -10,6 +10,15 @@ export async function initDB() {
   if (db) return db;
   
   try {
+    // CRITICAL: Check for DATABASE_URL first, before any imports
+    // In production (Vercel), DATABASE_URL MUST be set
+    if (process.env.DATABASE_URL) {
+      // Use Postgres in production
+      return await initPgDB();
+    }
+
+    // Fallback to SQL.js only for local development
+    // (if DATABASE_URL is not set)
     const [pathMod, fsMod] = await Promise.all([
       import('path'),
       import('fs')
@@ -17,79 +26,16 @@ export async function initDB() {
     const path = pathMod.default || pathMod;
     const fs = fsMod.default || fsMod;
 
-    // If DATABASE_URL is set, use Postgres via pg
-    if (process.env.DATABASE_URL) {
-      dbMode = 'pg';
-      const pg = await import('pg');
-      const { Client } = pg.default || pg;
-      pgClient = new Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
-      await pgClient.connect();
-
-      // Initialize tables
-      await pgClient.query(`CREATE TABLE IF NOT EXISTS users (
-        id TEXT PRIMARY KEY,
-        name TEXT,
-        email TEXT UNIQUE NOT NULL,
-        normalizedEmail TEXT,
-        password TEXT NOT NULL,
-        phone TEXT,
-        profileImage TEXT,
-        createdAt TEXT,
-        role TEXT DEFAULT 'user'
-      )`);
-
-      await pgClient.query(`CREATE TABLE IF NOT EXISTS orders (
-        id TEXT PRIMARY KEY,
-        reference TEXT,
-        userId TEXT,
-        name TEXT,
-        phone TEXT,
-        email TEXT,
-        items TEXT,
-        total INTEGER,
-        shipping INTEGER DEFAULT 0,
-        paid INTEGER DEFAULT 0,
-        paymentMethod TEXT,
-        status TEXT,
-        statusHistory TEXT,
-        lastEmailError TEXT,
-        lastMpesaUpdateError TEXT,
-        mpesaMerchantRequestId TEXT,
-        mpesaCheckoutRequestId TEXT,
-        mpesa TEXT,
-        createdAt TEXT,
-        shippingAddress TEXT,
-        shippingLocation TEXT,
-        normalizedEmail TEXT
-      )`);
-
-      await pgClient.query(`CREATE TABLE IF NOT EXISTS restock_subscriptions (
-        id TEXT PRIMARY KEY,
-        productId INTEGER,
-        email TEXT,
-        createdAt TEXT
-      )`);
-
-      await pgClient.query(`CREATE TABLE IF NOT EXISTS mpesa_queue (
-        id TEXT PRIMARY KEY,
-        orderId TEXT,
-        payload TEXT,
-        reason TEXT,
-        attempts INTEGER DEFAULT 0,
-        nextAttempt TEXT,
-        createdAt TEXT,
-        lastError TEXT
-      )`);
-
-      // Return a pg adapter implementing exec/run/prepare
-      db = createPgAdapter();
-      return db;
+    // Check if we're in a serverless environment without DATABASE_URL
+    const isVercelOrLambda = process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY;
+    if (isVercelOrLambda) {
+      throw new Error('Production serverless environment detected but DATABASE_URL is not set. Please configure DATABASE_URL in environment variables.');
     }
 
-    // Fallback to SQL.js for local/dev
-    const isProduction = process.env.VERCEL || process.env.NODE_ENV === 'production';
+    // Fallback to SQL.js for local development only
+    // (This code path should NOT execute in production)
     if (!dbPath) {
-      dbPath = isProduction ? path.join('/tmp', 'users.db') : path.join(process.cwd(), 'data', 'users.db');
+      dbPath = path.join(process.cwd(), 'data', 'users.db');
     }
 
     const initSqlJs = (await import('sql.js')).default;
@@ -277,6 +223,77 @@ export async function initDB() {
     console.error('[db] initDB error:', err.message || err);
     throw err;
   }
+}
+
+async function initPgDB() {
+  dbMode = 'pg';
+  const pg = await import('pg');
+  const { Client } = pg.default || pg;
+  pgClient = new Client({ 
+    connectionString: process.env.DATABASE_URL, 
+    ssl: { rejectUnauthorized: false } 
+  });
+  await pgClient.connect();
+
+  // Initialize tables
+  await pgClient.query(`CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY,
+    name TEXT,
+    email TEXT UNIQUE NOT NULL,
+    normalizedEmail TEXT,
+    password TEXT NOT NULL,
+    phone TEXT,
+    profileImage TEXT,
+    createdAt TEXT,
+    role TEXT DEFAULT 'user'
+  )`);
+
+  await pgClient.query(`CREATE TABLE IF NOT EXISTS orders (
+    id TEXT PRIMARY KEY,
+    reference TEXT,
+    userId TEXT,
+    name TEXT,
+    phone TEXT,
+    email TEXT,
+    items TEXT,
+    total INTEGER,
+    shipping INTEGER DEFAULT 0,
+    paid INTEGER DEFAULT 0,
+    paymentMethod TEXT,
+    status TEXT,
+    statusHistory TEXT,
+    lastEmailError TEXT,
+    lastMpesaUpdateError TEXT,
+    mpesaMerchantRequestId TEXT,
+    mpesaCheckoutRequestId TEXT,
+    mpesa TEXT,
+    createdAt TEXT,
+    shippingAddress TEXT,
+    shippingLocation TEXT,
+    normalizedEmail TEXT
+  )`);
+
+  await pgClient.query(`CREATE TABLE IF NOT EXISTS restock_subscriptions (
+    id TEXT PRIMARY KEY,
+    productId INTEGER,
+    email TEXT,
+    createdAt TEXT
+  )`);
+
+  await pgClient.query(`CREATE TABLE IF NOT EXISTS mpesa_queue (
+    id TEXT PRIMARY KEY,
+    orderId TEXT,
+    payload TEXT,
+    reason TEXT,
+    attempts INTEGER DEFAULT 0,
+    nextAttempt TEXT,
+    createdAt TEXT,
+    lastError TEXT
+  )`);
+
+  // Return a pg adapter implementing exec/run/prepare
+  db = createPgAdapter();
+  return db;
 }
 
 export async function saveDB() {
