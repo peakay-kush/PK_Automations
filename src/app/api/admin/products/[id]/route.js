@@ -80,7 +80,7 @@ export async function PUT(req, { params }) {
           const notifyEmails = [];
           try {
             stmt.bind([updated.id]);
-            while (stmt.step()) {
+            while (await stmt.step()) {
               const row = stmt.get();
               if (row && row[0]) notifyEmails.push(row[0]);
             }

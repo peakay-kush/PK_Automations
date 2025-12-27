@@ -24,7 +24,7 @@ export async function POST(req) {
       let found = false;
       try {
         stmt.bind([Number(productId), email]);
-        while (stmt.step()) {
+        while (await stmt.step()) {
           const row = stmt.get();
           if (row && row[0]) found = true;
         }
@@ -35,7 +35,7 @@ export async function POST(req) {
 
     try {
       const insert = db.prepare('INSERT INTO restock_subscriptions (id, productId, email, createdAt) VALUES (?,?,?,?)');
-      insert.run([id, Number(productId), email, createdAt]);
+      await insert.run([id, Number(productId), email, createdAt]);
       try { insert.free(); } catch (e) {}
       await saveDB();
     } catch (e) {

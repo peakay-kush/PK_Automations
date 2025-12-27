@@ -20,7 +20,7 @@ export async function GET(req) {
 
     if (isAdmin) {
       const stmt = db.prepare('SELECT id, reference, name, email, phone, items, total, shipping, shippingLocation, paid, paymentMethod, status, statusHistory, mpesa, mpesaMerchantRequestId, mpesaCheckoutRequestId, createdAt FROM orders ORDER BY createdAt DESC');
-      while (stmt.step()) {
+      while (await stmt.step()) {
         const row = stmt.get();
         results.push({
           id: row[0],
@@ -46,7 +46,7 @@ export async function GET(req) {
     } else {
       const stmt = db.prepare('SELECT id, reference, name, email, phone, items, total, shipping, shippingLocation, paid, paymentMethod, status, statusHistory, mpesa, mpesaMerchantRequestId, mpesaCheckoutRequestId, createdAt FROM orders WHERE userId = ? OR normalizedEmail = lower(?) OR lower(email) = lower(?) ORDER BY createdAt DESC');
       stmt.bind([payload.id, payload.email || '', payload.email || '']);
-      while (stmt.step()) {
+      while (await stmt.step()) {
         const row = stmt.get();
         results.push({
           id: row[0],
