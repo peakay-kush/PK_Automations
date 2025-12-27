@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ShoppingCart, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import AdminInlineControls from './AdminInlineControls';
+import { buildCloudinaryUrlFromFullUrl } from '@/utils/cloudinary';
 
 export default function ProductCard({ product, featured = false }) {
   const [editMode, setEditMode] = useState(false);
@@ -93,7 +94,7 @@ export default function ProductCard({ product, featured = false }) {
               const rawSrc = (product.images && product.images.length > 0) ? product.images[0] : product.image;
               const isCloud = rawSrc && rawSrc.includes('res.cloudinary.com');
               const desiredWidth = featured ? 1400 : 1000; // larger to ensure good quality
-              const src = isCloud ? require('@/utils/cloudinary').buildCloudinaryUrlFromFullUrl(rawSrc, { width: desiredWidth, quality: '100', format: null, fit: true }) : rawSrc;
+              const src = isCloud ? buildCloudinaryUrlFromFullUrl(rawSrc, { width: desiredWidth, quality: '100', format: null, fit: true }) : rawSrc;
               return (
                 <Image
                   src={src}

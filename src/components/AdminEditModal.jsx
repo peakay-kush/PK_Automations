@@ -11,6 +11,7 @@ import AdminTopicsEditor from './AdminTopicsEditor';
 import AdminAttachmentsUploader from './AdminAttachmentsUploader';
 import AdminTutorialForm from './AdminTutorialForm';
 import AdminProductForm from './AdminProductForm';
+import { buildCloudinaryUrlFromFullUrl } from '@/utils/cloudinary';
 
 export default function AdminEditModal() {
   const [open, setOpen] = useState(false);
@@ -987,7 +988,7 @@ export default function AdminEditModal() {
                         const idx = typeof item._admin_image_index === 'number' ? item._admin_image_index : 0;
                         const raw = images[idx];
                         const isCloud = raw && raw.includes('res.cloudinary.com');
-                        const src = isCloud ? require('@/utils/cloudinary').buildCloudinaryUrlFromFullUrl(raw, { width: 1600, quality: '80', format: null, fit: true }) : raw;
+                        const src = isCloud ? buildCloudinaryUrlFromFullUrl(raw, { width: 1600, quality: '80', format: null, fit: true }) : raw;
                         return <Image src={src} alt={item.name} fill style={{ objectFit: 'contain' }} sizes="(min-width:1024px) 600px, (min-width:768px) 400px, 100vw" unoptimized={true} />;
                       })()}
                     </div>
@@ -998,7 +999,7 @@ export default function AdminEditModal() {
                   <div className="flex gap-3">
                     {(item.images && item.images.length > 0 ? item.images : (item.image ? [item.image] : [])).map((img, idx) => (
                       <button key={idx} onClick={() => setItem(s => (Object.assign({}, s, { _admin_image_index: idx })))} className={`w-20 h-20 rounded-lg cursor-pointer overflow-hidden ${((item._admin_image_index || 0) === idx) ? 'ring-4 ring-accent' : 'border-2 border-gray-200'}`}>
-                        {(() => { const isCloud = img && img.includes('res.cloudinary.com'); const src = isCloud ? require('@/utils/cloudinary').buildCloudinaryUrlFromFullUrl(img, { width: 480, quality: '80', format: null, fit: true }) : img; return <Image src={src} alt={`thumb-${idx}`} width={80} height={80} style={{ objectFit: 'contain' }} unoptimized={true} />; })()}
+                        {(() => { const isCloud = img && img.includes('res.cloudinary.com'); const src = isCloud ? buildCloudinaryUrlFromFullUrl(img, { width: 480, quality: '80', format: null, fit: true }) : img; return <Image src={src} alt={`thumb-${idx}`} width={80} height={80} style={{ objectFit: 'contain' }} unoptimized={true} />; })()}
                       </button>
                     ))}
                   </div>
