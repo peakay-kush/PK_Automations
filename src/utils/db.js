@@ -188,19 +188,11 @@ export async function saveDB() {
     throw new Error('saveDB can only be called on the server');
   }
   if (!db) return;
-  // Support both CommonJS and ESM runtimes
-  let fs, path;
-  try {
-    // eslint-disable-next-line no-eval
-    const req = eval('require');
-    fs = req('fs');
-    path = req('path');
-  } catch (e) {
-    const fsMod = await import('fs');
-    const pathMod = await import('path');
-    fs = fsMod.default || fsMod;
-    path = pathMod.default || pathMod;
-  }
+  // Use dynamic imports for fs and path
+  const fsMod = await import('fs');
+  const pathMod = await import('path');
+  const fs = fsMod.default || fsMod;
+  const path = pathMod.default || pathMod;
   const dir = path.dirname(dbPath || path.join(process.cwd(), 'data', 'users.db'));
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
   const data = db.export();
