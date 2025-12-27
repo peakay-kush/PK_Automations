@@ -37,15 +37,17 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/auth/register/`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Registration failed');
-      setMessage('✓ Account created! Redirecting to login...');
-      setTimeout(() => router.push('/login'), 1500);
+      const token = json.token;
+      if (token) localStorage.setItem('pkat_token', token);
+      setMessage('✓ Account created! Redirecting...');
+      setTimeout(() => router.push('/'), 1500);
     } catch (err) {
       setError(err.message || 'Registration failed');
     } finally {

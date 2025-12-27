@@ -32,14 +32,14 @@ function LoginForm() {
 
     setLoading(true);
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/auth/login/`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ''}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.detail || json.error || 'Login failed');
-      const token = json.access || json.token;
+      if (!res.ok) throw new Error(json.error || 'Login failed');
+      const token = json.token;
       if (token) localStorage.setItem('pkat_token', token);
       try { window.dispatchEvent(new CustomEvent('toastClear')); } catch (e) {}
       setMessage('✓ Logged in! Redirecting...');
