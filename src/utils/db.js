@@ -8,30 +8,24 @@ export async function initDB() {
   if (db) return db;
   
   try {
-    // Load sql.js using dynamic import with error handling for edge runtime
-    let initSqlJs;
-    try {
-      const sqljsModule = await import('sql.js');
-      initSqlJs = sqljsModule.default || sqljsModule;
-    } catch (e) {
-      console.error('[db] Failed to load sql.js:', e.message);
-      throw new Error(`Failed to load sql.js: ${e.message}`);
-    }
+    const [pathMod, fsMod] = await Promise.all([
+      import('path'),
+      import('fs')
+    ]);
+    const path = pathMod.default || pathMod;
+    const fs = fsMod.default || fsMod;
     
-    const path = (await import('path')).default || (await import('path'));
-    const fs = (await import('fs')).default || (await import('fs'));
     if (!dbPath) dbPath = path.join(process.cwd(), 'data', 'users.db');
     
-    // initialize SQL.js and make sure locateFile points to the wasm in node_modules
-    let SQL;
-    try {
-      SQL = await initSqlJs({
-        locateFile: (file) => path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', file)
-      });
-    } catch (e) {
-      console.error('[db] Failed to initialize SQL.js:', e.message);
-      throw new Error(`Failed to initialize SQL.js: ${e.message}`);
-    }
+    // Dynamically import sql.js only when needed (not at build time)
+    const initSqlJs = (await import('sql.js')).default;
+    
+    // Initialize SQL.js with proper WASM path - use require.resolve fallback for better compatibility
+    const wasmBinary = fs.readFileSync(
+      path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', 'sql-wasm.wasm')
+    );
+    
+    const SQL = await initSqlJs({ wasmBinary });
     
     let buffer = null;
     try {
