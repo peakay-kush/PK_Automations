@@ -153,7 +153,7 @@ export async function POST(req) {
       const stmt = db.prepare('INSERT INTO orders (id, reference, userId, name, email, normalizedEmail, phone, items, total, shipping, shippingAddress, shippingLocation, paid, paymentMethod, status, statusHistory, createdAt) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
       const initHistory = JSON.stringify([{ status, changedAt: createdAt, by: userId || name || 'system' }]);
       // store normalized phone and normalized email (lowercase) and snapshot items
-      stmt.run([id, reference, userId, name, normalizedEmail, normalizedEmail, normalizedPhone, JSON.stringify(itemsSnapshot), orderTotal, shippingAmt, shippingAddrStr, shippingLocStr, paid, paymentMethod, status, initHistory, createdAt]);
+      await stmt.run([id, reference, userId, name, normalizedEmail, normalizedEmail, normalizedPhone, JSON.stringify(itemsSnapshot), orderTotal, shippingAmt, shippingAddrStr, shippingLocStr, paid, paymentMethod, status, initHistory, createdAt]);
       try { stmt.free(); } catch (e) {}
       await saveDB();
     } catch (e) {
@@ -199,7 +199,7 @@ export async function POST(req) {
       console.error('email error', e);
       try {
         const stmtErr = db.prepare('UPDATE orders SET lastEmailError = ? WHERE id = ?');
-        stmtErr.run([String(e && e.message ? e.message : e), id]);
+        await stmtErr.run([String(e && e.message ? e.message : e), id]);
         try { stmtErr.free(); } catch (ee) {}
         await saveDB();
       } catch (ee) {
@@ -225,7 +225,7 @@ export async function POST(req) {
         hist.push({ status: 'pending', changedAt: new Date().toISOString(), by: 'mpesa-stk' });
 
         const upd = db.prepare('UPDATE orders SET mpesa = ?, mpesaMerchantRequestId = ?, mpesaCheckoutRequestId = ?, status = ?, statusHistory = ? WHERE id = ?');
-        upd.run([JSON.stringify(mpesaObj), merchantRequestId, checkoutRequestId, 'pending', JSON.stringify(hist), id]);
+        await upd.run([JSON.stringify(mpesaObj), merchantRequestId, checkoutRequestId, 'pending', JSON.stringify(hist), id]);
         try { upd.free(); } catch (e) {}
         await saveDB();
 
@@ -235,7 +235,7 @@ export async function POST(req) {
         console.error('Mpesa STK initiation failed', e);
         try {
           const stmtErr = db.prepare('UPDATE orders SET lastMpesaUpdateError = ? WHERE id = ?');
-          stmtErr.run([String(e && e.message ? e.message : e), id]);
+          await stmtErr.run([String(e && e.message ? e.message : e), id]);
           try { stmtErr.free(); } catch (ee) {}
           await saveDB();
         } catch (ee) { console.warn('failed to persist mpesa initiation error', ee); }
