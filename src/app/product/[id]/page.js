@@ -8,6 +8,7 @@ import { products as fallbackProducts } from '@/data/products';
 import { ShoppingCart, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import AdminInlineControls from '@/components/AdminInlineControls';
+import { buildCloudinaryUrlFromFullUrl } from '@/utils/cloudinary';
 
 import { useParams } from 'next/navigation';
 import { apiFetch } from '@/utils/api';
@@ -253,7 +254,7 @@ export default function ProductDetail() {
                   {(() => {
                     const rawSrc = productImages[imageIndex];
                     const isCloud = rawSrc && rawSrc.includes('res.cloudinary.com');
-                    const src = isCloud ? require('@/utils/cloudinary').buildCloudinaryUrlFromFullUrl(rawSrc, { width: 2000, quality: '100', format: null, fit: true }) : rawSrc;
+                    const src = isCloud ? buildCloudinaryUrlFromFullUrl(rawSrc, { width: 2000, quality: '100', format: null, fit: true }) : rawSrc;
                     return (
                       <Image
                         src={src}
@@ -289,7 +290,7 @@ export default function ProductDetail() {
                   <button key={idx} onClick={() => setImageIndex(idx)} className={`w-20 h-20 rounded-lg cursor-pointer overflow-hidden ${imageIndex === idx ? 'ring-4 ring-accent' : 'border-2 border-gray-200'}`}>
                     {(() => {
                       const isCloud = img && img.includes('res.cloudinary.com');
-                      const src = isCloud ? require('@/utils/cloudinary').buildCloudinaryUrlFromFullUrl(img, { width: 480, quality: '100', format: null, fit: true }) : img;
+                      const src = isCloud ? buildCloudinaryUrlFromFullUrl(img, { width: 480, quality: '100', format: null, fit: true }) : img;
                       return <Image src={src} alt={`thumb-${idx}`} width={80} height={80} style={{ objectFit: 'contain' }} sizes="80px" quality={100} unoptimized={true} />;
                     })()}
                   </button>
