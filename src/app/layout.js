@@ -6,6 +6,15 @@ export const metadata = {
   title: 'PK Automations - Electronics, Services & Solutions',
   description: 'Leading provider of electronics components, DIY kits, electrical services, biomedical equipment, and web development',
   keywords: 'electronics, Arduino, IoT, automation, web development, biomedical',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/pk-automations-logo.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/pk-automations-logo.png' },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {

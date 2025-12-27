@@ -1,0 +1,9 @@
+# Gitleaks configuration - whitelist template files with placeholders
+
+[[allowlist]]
+  description = ".env.example is a template with placeholder values only"
+  paths = [".env.example"]
+
+[[allowlist]]
+  description = "Documentation files, not secrets"
+  paths = ["SECURITY_ROTATION.md", "DATABASE_MIGRATION.md"]

@@ -9,6 +9,7 @@
     "lint": "next lint",
     "prepare": "husky install",
     "backup:db": "node scripts/backup_db.js",
+    "migrate:db": "node scripts/migrate_to_postgres.js",
     "optimize:logo": "node scripts/convert-logo.js",
     "create:super": "node scripts/create-super.js",
     "mpesa-worker": "echo 'mpesa integration disabled'",
@@ -25,6 +26,7 @@
     "lucide-react": "^0.263.1",
     "next": "^14.0.0",
     "nodemailer": "^6.9.4",
+    "pg": "^8.16.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sql.js": "^1.13.0"

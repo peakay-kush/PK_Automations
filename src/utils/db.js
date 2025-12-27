@@ -1,5 +1,7 @@
 let db = null;
 let dbPath = null;
+let pgClient = null;
+let dbMode = null; // 'sqljs' | 'pg'
 
 export async function initDB() {
   if (typeof window !== 'undefined') {
@@ -14,18 +16,95 @@ export async function initDB() {
     ]);
     const path = pathMod.default || pathMod;
     const fs = fsMod.default || fsMod;
-    
-    if (!dbPath) dbPath = path.join(process.cwd(), 'data', 'users.db');
-    
-    // Dynamically import sql.js only when needed (not at build time)
+
+    // If DATABASE_URL is set, use Postgres via pg
+    if (process.env.DATABASE_URL) {
+      dbMode = 'pg';
+      const pg = await import('pg');
+      const { Client } = pg.default || pg;
+      pgClient = new Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+      await pgClient.connect();
+
+      // Initialize tables
+      await pgClient.query(`CREATE TABLE IF NOT EXISTS users (
+        id TEXT PRIMARY KEY,
+        name TEXT,
+        email TEXT UNIQUE NOT NULL,
+        normalizedEmail TEXT,
+        password TEXT NOT NULL,
+        phone TEXT,
+        profileImage TEXT,
+        createdAt TEXT,
+        role TEXT DEFAULT 'user'
+      )`);
+
+      await pgClient.query(`CREATE TABLE IF NOT EXISTS orders (
+        id TEXT PRIMARY KEY,
+        reference TEXT,
+        userId TEXT,
+        name TEXT,
+        phone TEXT,
+        email TEXT,
+        items TEXT,
+        total INTEGER,
+        shipping INTEGER DEFAULT 0,
+        paid INTEGER DEFAULT 0,
+        paymentMethod TEXT,
+        status TEXT,
+        statusHistory TEXT,
+        lastEmailError TEXT,
+        lastMpesaUpdateError TEXT,
+        mpesaMerchantRequestId TEXT,
+        mpesaCheckoutRequestId TEXT,
+        mpesa TEXT,
+        createdAt TEXT,
+        shippingAddress TEXT,
+        shippingLocation TEXT,
+        normalizedEmail TEXT
+      )`);
+
+      await pgClient.query(`CREATE TABLE IF NOT EXISTS restock_subscriptions (
+        id TEXT PRIMARY KEY,
+        productId INTEGER,
+        email TEXT,
+        createdAt TEXT
+      )`);
+
+      await pgClient.query(`CREATE TABLE IF NOT EXISTS mpesa_queue (
+        id TEXT PRIMARY KEY,
+        orderId TEXT,
+        payload TEXT,
+        reason TEXT,
+        attempts INTEGER DEFAULT 0,
+        nextAttempt TEXT,
+        createdAt TEXT,
+        lastError TEXT
+      )`);
+
+      // Return a pg adapter implementing exec/run/prepare
+      db = createPgAdapter();
+      return db;
+    }
+
+    // Fallback to SQL.js for local/dev
+    const isProduction = process.env.VERCEL || process.env.NODE_ENV === 'production';
+    if (!dbPath) {
+      dbPath = isProduction ? path.join('/tmp', 'users.db') : path.join(process.cwd(), 'data', 'users.db');
+    }
+
     const initSqlJs = (await import('sql.js')).default;
-    
-    // Initialize SQL.js with proper WASM path - use require.resolve fallback for better compatibility
-    const wasmBinary = fs.readFileSync(
-      path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', 'sql-wasm.wasm')
-    );
-    
-    const SQL = await initSqlJs({ wasmBinary });
+    let SQL;
+    try {
+      SQL = await initSqlJs({ locateFile: file => `https://sql.js.org/dist/${file}` });
+    } catch (e) {
+      try {
+        const wasmBinary = fs.readFileSync(path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', 'sql-wasm.wasm'));
+        SQL = await initSqlJs({ wasmBinary });
+      } catch (e2) {
+        console.error('[db] SQL.js init failed:', e2.message);
+        throw new Error('Failed to initialize SQL.js');
+      }
+    }
     
     let buffer = null;
     try {
@@ -192,6 +271,7 @@ export async function initDB() {
     console.warn('failed to ensure mpesa_queue table', e);
   }
 
+    dbMode = 'sqljs';
     return db;
   } catch (err) {
     console.error('[db] initDB error:', err.message || err);
@@ -204,7 +284,10 @@ export async function saveDB() {
     throw new Error('saveDB can only be called on the server');
   }
   if (!db) return;
-  // Use dynamic imports for fs and path
+  if (dbMode === 'pg') {
+    // No-op: Postgres persists automatically
+    return;
+  }
   const fsMod = await import('fs');
   const pathMod = await import('path');
   const fs = fsMod.default || fsMod;
@@ -218,4 +301,60 @@ export async function saveDB() {
 export async function getDB() {
   if (!db) await initDB();
   return db;
+}
+
+function toParamSql(sql) {
+  let index = 0;
+  return sql.replace(/\?/g, () => {
+    index += 1;
+    return `$${index}`;
+  });
+}
+
+function rowsToExecResult(rows) {
+  if (!rows || rows.length === 0) return [{ columns: [], values: [] }];
+  const columns = Object.keys(rows[0] || {});
+  const values = rows.map(r => columns.map(c => r[c]));
+  return [{ columns, values }];
+}
+
+function createPgAdapter() {
+  return {
+    exec: async (sql) => {
+      const res = await pgClient.query(sql);
+      return rowsToExecResult(res.rows);
+    },
+    run: async (sql, params = []) => {
+      const q = toParamSql(sql);
+      await pgClient.query(q, params);
+    },
+    prepare: (sql) => {
+      let bound = [];
+      let executed = null;
+      return {
+        bind(params) { bound = params || []; },
+        async step() {
+          const q = toParamSql(sql);
+          const res = await pgClient.query(q, bound);
+          executed = res.rows;
+          return !!(executed && executed.length);
+        },
+        get() {
+          if (!executed || executed.length === 0) return null;
+          const row = executed[0];
+          const cols = Object.keys(row);
+          return cols.map(c => row[c]);
+        },
+        getAsObject() {
+          if (!executed || executed.length === 0) return null;
+          return executed[0];
+        },
+        async run(params = []) {
+          const q = toParamSql(sql);
+          await pgClient.query(q, params);
+        },
+        free() {}
+      };
+    }
+  };
 }

@@ -14,7 +14,9 @@ data/*.sql
 data/*.csv
 backend-archive/*.sqlite3
 
-# Ignore user uploads and environment examples
+# Ignore user uploads
 public/uploads/
 .env.local.example
-.env.example
+
+# .env.example is TRACKED - it's a template with placeholders only
+
