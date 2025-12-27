@@ -20,7 +20,8 @@ function normalizeEmail(email) {
 async function loadUserById(db, id) {
   const stmt = db.prepare('SELECT id, name, email, phone, profileImage, createdAt, role FROM users WHERE id = ?');
   stmt.bind([id]);
-  const row = stmt.step() ? stmt.get() : null;
+  const hasRow = await stmt.step();
+  const row = hasRow ? stmt.get() : null;
   stmt.free();
   if (!row) return null;
   const [userId, name, email, phone, profileImage, createdAt, role] = row;
@@ -55,7 +56,7 @@ export async function PATCH(req) {
       'UPDATE users SET name = COALESCE(?, name), email = COALESCE(?, email), phone = COALESCE(?, phone), profileImage = COALESCE(?, profileImage), normalizedEmail = COALESCE(?, normalizedEmail) WHERE id = ?'
     );
     stmt.bind([name || null, normalized || null, phone || null, profileImage || null, normalized || null, payload.id]);
-    stmt.step();
+    await stmt.step();
     stmt.free();
 
     await saveDB();

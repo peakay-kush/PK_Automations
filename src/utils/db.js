@@ -348,8 +348,11 @@ function createPgAdapter() {
     prepare: (sql) => {
       let bound = [];
       let executed = null;
+      
       return {
-        bind(params) { bound = params || []; },
+        bind(params) { 
+          bound = params || []; 
+        },
         async step() {
           const q = toParamSql(sql);
           const res = await pgClient.query(q, bound);

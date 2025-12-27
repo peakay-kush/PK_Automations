@@ -28,7 +28,8 @@ export async function POST(req) {
     const stmt = db.prepare('SELECT id, name, email, password, role FROM users WHERE normalizedEmail = ? OR email = ?');
     stmt.bind([normalizedEmail, normalizedEmail]);
 
-    const row = stmt.step() ? stmt.getAsObject() : null;
+    const hasRow = await stmt.step();
+    const row = hasRow ? stmt.getAsObject() : null;
     stmt.free();
 
     if (!row) {

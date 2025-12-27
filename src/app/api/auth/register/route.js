@@ -37,12 +37,13 @@ export async function POST(req) {
     const db = await getDB();
 
     const countStmt = db.prepare('SELECT COUNT(*) as count FROM users');
-    const usersCount = countStmt.step() ? countStmt.getAsObject().count : 0;
+    const hasRows = await countStmt.step();
+    const usersCount = hasRows ? countStmt.getAsObject().count : 0;
     countStmt.free();
 
     const existsStmt = db.prepare('SELECT 1 FROM users WHERE normalizedEmail = ? OR email = ?');
     existsStmt.bind([normalizedEmail, normalizedEmail]);
-    const alreadyExists = existsStmt.step();
+    const alreadyExists = await existsStmt.step();
     existsStmt.free();
     if (alreadyExists) {
       return NextResponse.json({ error: 'User already exists' }, { status: 409 });
@@ -62,7 +63,7 @@ export async function POST(req) {
     const insertStmt = db.prepare(
       'INSERT INTO users (id, name, email, normalizedEmail, password, createdAt, role) VALUES (?, ?, ?, ?, ?, ?, ?)'
     );
-    insertStmt.run([id, name || '', email.toLowerCase(), normalizedEmail, hash, createdAt, roleToInsert]);
+    await insertStmt.run([id, name || '', email.toLowerCase(), normalizedEmail, hash, createdAt, roleToInsert]);
     insertStmt.free();
     await saveDB();
 
