@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
-function readTeamFile() {
+async function readTeamFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -14,8 +14,11 @@ function readTeamFile() {
     return [];
   }
 }
-function writeTeamFile(team) {
-  const json = { team };
+async function await writeTeamFile(data) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
+  const json = { team: data };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
 
@@ -25,7 +28,7 @@ export async function GET(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    const team = readTeamFile();
+    const team = await readTeamFile();
     const m = team.find((x) => x.id === id);
     if (!m) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json(m);
@@ -42,13 +45,13 @@ export async function PUT(req, { params }) {
   try {
     const id = parseInt(params.id, 10);
     const body = await req.json();
-    const team = readTeamFile();
+    const team = await readTeamFile();
     const idx = team.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
     const updated = Object.assign({}, team[idx], body);
     team[idx] = updated;
-    writeTeamFile(team);
+    await writeTeamFile(team);
     return NextResponse.json({ ok: true, member: updated });
   } catch (err) {
     console.error('[api/admin/team/[id] PUT] ERROR', err);
@@ -62,11 +65,11 @@ export async function DELETE(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    let team = readTeamFile();
+    let team = await readTeamFile();
     const idx = team.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     team.splice(idx, 1);
-    writeTeamFile(team);
+    await writeTeamFile(team);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[api/admin/team/[id] DELETE] ERROR', err);

@@ -1,20 +1,28 @@
 import patchUrlParse from '@/utils/patchUrlParse';
 patchUrlParse();
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
 export const dynamic = 'force-dynamic';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'products.json');
-function readProductsFile() {
+async function readProductsFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'products.json');
+  if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
-  const json = JSON.parse(raw);
-  return json.products || [];
+  try {
+    const json = JSON.parse(raw);
+    return json.products || [];
+  } catch (err) {
+    return [];
+  }
 }
-function writeProductsFile(products) {
-  const json = { products };
+async function await writeProductsFile(data) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'products.json');
+  const json = { products: data };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
 
@@ -24,7 +32,7 @@ export async function GET(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    const products = readProductsFile();
+    const products = await readProductsFile();
     const p = products.find((x) => x.id === id);
     if (!p) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json(p);
@@ -44,7 +52,7 @@ export async function PUT(req, { params }) {
     // basic validation
     if (body && typeof body.price !== 'undefined' && isNaN(Number(body.price))) return NextResponse.json({ error: 'Invalid price' }, { status: 422 });
 
-    const products = readProductsFile();
+    const products = await readProductsFile();
     const idx = products.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
@@ -57,7 +65,7 @@ export async function PUT(req, { params }) {
 
     const previous = products[idx];
     products[idx] = updated;
-    writeProductsFile(products);
+    await writeProductsFile(products);
 
     // If product was previously out of stock and now restocked, notify subscribers
     try {
@@ -123,7 +131,7 @@ export async function DELETE(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    let products = readProductsFile();
+    let products = await readProductsFile();
     const idx = products.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
@@ -144,7 +152,7 @@ export async function DELETE(req, { params }) {
     } catch (e) { /* ignore file deletion errors */ }
 
     products.splice(idx, 1);
-    writeProductsFile(products);
+    await writeProductsFile(products);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[api/admin/products/[id] DELETE] ERROR', err);

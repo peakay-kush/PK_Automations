@@ -1,14 +1,14 @@
 import patchUrlParse from '@/utils/patchUrlParse';
 patchUrlParse();
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
 export const dynamic = 'force-dynamic';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
-function readTutorialsFile() {
+async function readTutorialsFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -18,7 +18,11 @@ function readTutorialsFile() {
     return [];
   }
 }
-function writeTutorialsFile(tutorials) {
+
+async function writeTutorialsFile(tutorials) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
   const json = { tutorials };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
@@ -28,7 +32,7 @@ export async function GET(req) {
   if (auth && auth.status && auth.status !== 200) return auth;
 
   try {
-    const tutorials = readTutorialsFile();
+    const tutorials = await readTutorialsFile();
     return NextResponse.json(tutorials);
   } catch (err) {
     console.error('[api/admin/tutorials] ERROR', err);
@@ -50,7 +54,7 @@ export async function POST(req) {
     if (!newTut.image && newTut.images && newTut.images.length > 0) newTut.image = newTut.images[0];
     if (!newTut.thumbnail && newTut.images && newTut.images.length > 0) newTut.thumbnail = newTut.images[0];
     tutorials.push(newTut);
-    writeTutorialsFile(tutorials);
+    await writeTutorialsFile(tutorials);
     return NextResponse.json({ ok: true, tutorial: newTut }, { status: 201 });
   } catch (err) {
     console.error('[api/admin/tutorials POST] ERROR', err);

@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
-function readTutorialsFile() {
+async function readTutorialsFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -17,7 +17,7 @@ function readTutorialsFile() {
 export async function GET(req, { params }) {
   try {
     const id = params.id;
-    const tutorials = readTutorialsFile();
+    const tutorials = await readTutorialsFile();
     if (!tutorials || tutorials.length === 0) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
     // Try numeric id, then slug, then title (case-insensitive)

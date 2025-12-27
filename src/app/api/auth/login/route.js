@@ -12,19 +12,26 @@ export async function POST(req) {
     if (!email || !password) return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
 
     const db = await getDB();
-    const res = db.exec('SELECT * FROM users WHERE email = ?', [email.toLowerCase()]);
-    if (res.length === 0 || res[0].values.length === 0) return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    const stmt = db.prepare('SELECT * FROM users WHERE email = ?');
+    stmt.bind([email.toLowerCase()]);
+    
+    let row = null;
+    if (stmt.step()) {
+      row = stmt.getAsObject();
+    }
+    stmt.free();
 
-    const row = res[0].values[0];
-    const [userId, name, userEmail, hash, createdAt, role] = row;
-    const ok = bcrypt.compareSync(password, hash);
+    if (!row) return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+
+    const ok = bcrypt.compareSync(password, row.password);
     if (!ok) return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
 
-    const payload = { id: userId, email: userEmail, name, role };
+    const payload = { id: row.id, email: row.email, name: row.name, role: row.role || 'user' };
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
 
     return NextResponse.json({ ok: true, token, user: payload });
   } catch (err) {
+    console.error('[api/auth/login] ERROR:', err);
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }

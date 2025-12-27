@@ -8,14 +8,14 @@ try {
   console.warn('[api/admin/pages/[id] route] patchUrlParse failed', e && (e.stack || e));
 }
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
 export const dynamic = 'force-dynamic';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'pages.json');
-function readPagesFile() {
+async function readPagesFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'pages.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -48,9 +48,11 @@ function _sanitizePage(p) {
   return page;
 }
 
-function writePagesFile(pages) {
-  const cleaned = (pages || []).map(_sanitizePage);
-  const json = { pages: cleaned };
+async function await writePagesFile(data) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'pages.json');
+  const json = { pages: data };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
 
@@ -60,7 +62,7 @@ export async function GET(req, { params }) {
 
   try {
     const id = params.id;
-    const pages = readPagesFile();
+    const pages = await readPagesFile();
     if (!pages || pages.length === 0) return NextResponse.json({ error: 'No pages configured' }, { status: 404 });
 
     // Try exact id match, then slug, then title (case-insensitive) to be more forgiving
@@ -87,12 +89,12 @@ export async function PUT(req, { params }) {
   try {
     const id = params.id;
     const body = await req.json();
-    const pages = readPagesFile();
+    const pages = await readPagesFile();
     const idx = pages.findIndex(x => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     const updated = Object.assign({}, pages[idx], body);
     pages[idx] = updated;
-    writePagesFile(pages);
+    await writePagesFile(pages);
     return NextResponse.json({ ok: true, page: updated });
   } catch (err) {
     console.error('[api/admin/pages/[id] PUT] ERROR', err);
@@ -106,11 +108,11 @@ export async function DELETE(req, { params }) {
 
   try {
     const id = params.id;
-    let pages = readPagesFile();
+    let pages = await readPagesFile();
     const idx = pages.findIndex(x => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     pages.splice(idx, 1);
-    writePagesFile(pages);
+    await writePagesFile(pages);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[api/admin/pages/[id] DELETE] ERROR', err);

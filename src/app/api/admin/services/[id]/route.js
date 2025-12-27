@@ -1,14 +1,14 @@
 import patchUrlParse from '@/utils/patchUrlParse';
 patchUrlParse();
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
 export const dynamic = 'force-dynamic';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'services.json');
-function readServicesFile() {
+async function readServicesFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'services.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -18,8 +18,11 @@ function readServicesFile() {
     return [];
   }
 }
-function writeServicesFile(services) {
-  const json = { services };
+async function await writeServicesFile(data) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'services.json');
+  const json = { services: data };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
 
@@ -29,7 +32,7 @@ export async function GET(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    const services = readServicesFile();
+    const services = await readServicesFile();
     const s = services.find((x) => x.id === id);
     if (!s) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json(s);
@@ -70,7 +73,7 @@ export async function PUT(req, { params }) {
       return _clone(obj);
     }
 
-    const services = readServicesFile();
+    const services = await readServicesFile();
     const idx = services.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
@@ -81,7 +84,7 @@ export async function PUT(req, { params }) {
     if (updated.images && updated.images.length > 0) updated.image = updated.images[0];
 
     services[idx] = updated;
-    writeServicesFile(services);
+    await writeServicesFile(services);
     return NextResponse.json({ ok: true, service: updated });
   } catch (err) {
     console.error('[api/admin/services/[id] PUT] ERROR', err);
@@ -95,7 +98,7 @@ export async function DELETE(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    let services = readServicesFile();
+    let services = await readServicesFile();
     const idx = services.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
@@ -120,7 +123,7 @@ export async function DELETE(req, { params }) {
     } catch (e) { /* ignore */ }
 
     services.splice(idx, 1);
-    writeServicesFile(services);
+    await writeServicesFile(services);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[api/admin/services/[id] DELETE] ERROR', err);

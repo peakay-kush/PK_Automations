@@ -1,12 +1,14 @@
 import patchUrlParse from '@/utils/patchUrlParse';
 patchUrlParse();
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
-function readTutorialsFile() {
+export const dynamic = 'force-dynamic';
+
+async function readTutorialsFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -16,8 +18,12 @@ function readTutorialsFile() {
     return [];
   }
 }
-function writeTutorialsFile(tutorials) {
-  const json = { tutorials };
+
+async function writeTutorialsFile(data) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'tutorials.json');
+  const json = { tutorials: data };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
 
@@ -27,7 +33,7 @@ export async function GET(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    const tutorials = readTutorialsFile();
+    const tutorials = await readTutorialsFile();
     const t = tutorials.find((x) => x.id === id);
     if (!t) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json(t);
@@ -44,7 +50,7 @@ export async function PUT(req, { params }) {
   try {
     const id = parseInt(params.id, 10);
     const body = await req.json();
-    const tutorials = readTutorialsFile();
+    const tutorials = await readTutorialsFile();
     const idx = tutorials.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
@@ -57,7 +63,7 @@ export async function PUT(req, { params }) {
     }
 
     tutorials[idx] = updated;
-    writeTutorialsFile(tutorials);
+    await writeTutorialsFile(tutorials);
     return NextResponse.json({ ok: true, tutorial: updated });
   } catch (err) {
     console.error('[api/admin/tutorials/[id] PUT] ERROR', err);
@@ -71,7 +77,7 @@ export async function DELETE(req, { params }) {
 
   try {
     const id = parseInt(params.id, 10);
-    let tutorials = readTutorialsFile();
+    let tutorials = await readTutorialsFile();
     const idx = tutorials.findIndex((x) => x.id === id);
     if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
@@ -92,7 +98,7 @@ export async function DELETE(req, { params }) {
     } catch (e) { /* ignore */ }
 
     tutorials.splice(idx, 1);
-    writeTutorialsFile(tutorials);
+    await writeTutorialsFile(tutorials);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('[api/admin/tutorials/[id] DELETE] ERROR', err);

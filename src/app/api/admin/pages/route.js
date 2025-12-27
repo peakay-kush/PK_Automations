@@ -1,14 +1,14 @@
 import patchUrlParse from '@/utils/patchUrlParse';
 patchUrlParse();
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
 export const dynamic = 'force-dynamic';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'pages.json');
-function readPagesFile() {
+async function readPagesFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'pages.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -49,9 +49,11 @@ function _sanitizePage(p) {
   return page;
 }
 
-function writePagesFile(pages) {
-  const cleaned = (pages || []).map(_sanitizePage);
-  const json = { pages: cleaned };
+async function await writePagesFile(data) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'pages.json');
+  const json = { pages: data };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
 
@@ -60,7 +62,7 @@ export async function GET(req) {
   if (auth && auth.status && auth.status !== 200) return auth;
 
   try {
-    const pages = readPagesFile();
+    const pages = await readPagesFile();
     return NextResponse.json(pages);
   } catch (err) {
     console.error('[api/admin/pages] ERROR', err);
@@ -75,11 +77,11 @@ export async function POST(req) {
   try {
     const body = await req.json();
     if (!body || !body.id) return NextResponse.json({ error: 'Missing page id' }, { status: 422 });
-    const pages = readPagesFile();
+    const pages = await readPagesFile();
     const exists = pages.find(p => p.id === body.id);
     if (exists) return NextResponse.json({ error: 'Page already exists' }, { status: 409 });
     pages.push(body);
-    writePagesFile(pages);
+    await writePagesFile(pages);
     return NextResponse.json({ ok: true, page: body }, { status: 201 });
   } catch (err) {
     console.error('[api/admin/pages POST] ERROR', err);

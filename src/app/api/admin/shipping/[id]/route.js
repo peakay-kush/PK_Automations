@@ -1,22 +1,31 @@
 import patchUrlParse from '@/utils/patchUrlParse';
 patchUrlParse();
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
 export const dynamic = 'force-dynamic';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'shipping.json');
-function readFile() { const raw = fs.readFileSync(dataPath, 'utf8'); return JSON.parse(raw); }
-function writeFile(obj) { fs.writeFileSync(dataPath, JSON.stringify(obj, null, 2)); }
+async function readFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'shipping.json');
+  const raw = fs.readFileSync(dataPath, 'utf8');
+  return JSON.parse(raw);
+}
+
+async function writeFile(obj) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'shipping.json');
+  fs.writeFileSync(dataPath, JSON.stringify(obj, null, 2));
+}
 
 export async function GET(req, { params }) {
   const auth = requireAdmin(req);
   if (auth && auth.status && auth.status !== 200) return auth;
   try {
     const id = Number(params.id);
-    const data = readFile();
+    const data = await readFile();
     const item = (data.locations || []).find(x => x.id === id);
     if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json(item);

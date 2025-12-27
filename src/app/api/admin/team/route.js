@@ -1,14 +1,14 @@
 import patchUrlParse from '@/utils/patchUrlParse';
 patchUrlParse();
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { requireAdmin } from '@/utils/serverAuth';
 
 export const dynamic = 'force-dynamic';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
-function readTeamFile() {
+async function readTeamFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -18,8 +18,11 @@ function readTeamFile() {
     return [];
   }
 }
-function writeTeamFile(team) {
-  const json = { team };
+async function await writeTeamFile(data) {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
+  const json = { team: data };
   fs.writeFileSync(dataPath, JSON.stringify(json, null, 2));
 }
 
@@ -28,7 +31,7 @@ export async function GET(req) {
   if (auth && auth.status && auth.status !== 200) return auth;
 
   try {
-    const team = readTeamFile();
+    const team = await readTeamFile();
     return NextResponse.json(team);
   } catch (err) {
     console.error('[api/admin/team] ERROR', err);
@@ -43,11 +46,11 @@ export async function POST(req) {
   try {
     const body = await req.json();
     if (!body || !body.name) return NextResponse.json({ error: 'Invalid payload: name required' }, { status: 422 });
-    const team = readTeamFile();
+    const team = await readTeamFile();
     const id = Date.now();
     const newMember = Object.assign({ id }, body);
     team.push(newMember);
-    writeTeamFile(team);
+    await writeTeamFile(team);
     return NextResponse.json({ ok: true, member: newMember }, { status: 201 });
   } catch (err) {
     console.error('[api/admin/team POST] ERROR', err);

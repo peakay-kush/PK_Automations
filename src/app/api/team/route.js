@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
-const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
-function readTeamFile() {
+async function readTeamFile() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
   if (!fs.existsSync(dataPath)) return [];
   const raw = fs.readFileSync(dataPath, 'utf8');
   try {
@@ -16,7 +16,7 @@ function readTeamFile() {
 
 export async function GET() {
   try {
-    const team = readTeamFile();
+    const team = await readTeamFile();
     return NextResponse.json(team);
   } catch (err) {
     console.error('[api/team] ERROR', err);
