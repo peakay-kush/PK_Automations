@@ -14,8 +14,8 @@ export function verifyToken(token) {
   try {
     return jwt.verify(token, JWT_SECRET);
   } catch (e) {
-    // Avoid Sentry at module load; log for visibility instead
-    try { console.warn('[auth] verifyToken failed', e?.message || e); } catch (_) {}
+    // Log error but don't try to call Sentry at module load time
+    console.warn('[auth] token verification failed:', e.message);
     return null;
   }
 }

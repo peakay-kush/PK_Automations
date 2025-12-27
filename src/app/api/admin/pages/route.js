@@ -49,7 +49,7 @@ function _sanitizePage(p) {
   return page;
 }
 
-async function await writePagesFile(data) {
+async function writePagesFile(data) {
   const fs = await import('fs');
   const path = await import('path');
   const dataPath = path.join(process.cwd(), 'src', 'data', 'pages.json');

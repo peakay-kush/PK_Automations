@@ -18,7 +18,7 @@ async function readServicesFile() {
     return [];
   }
 }
-async function await writeServicesFile(data) {
+async function writeServicesFile(data) {
   const fs = await import('fs');
   const path = await import('path');
   const dataPath = path.join(process.cwd(), 'src', 'data', 'services.json');

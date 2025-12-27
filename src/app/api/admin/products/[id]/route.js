@@ -18,7 +18,7 @@ async function readProductsFile() {
     return [];
   }
 }
-async function await writeProductsFile(data) {
+async function writeProductsFile(data) {
   const fs = await import('fs');
   const path = await import('path');
   const dataPath = path.join(process.cwd(), 'src', 'data', 'products.json');
@@ -137,6 +137,8 @@ export async function DELETE(req, { params }) {
 
     // attempt to remove any uploaded images if they live in /uploads
     try {
+      const fs = await import('fs');
+      const path = await import('path');
       const target = products[idx];
       if (target) {
         const imgs = [];

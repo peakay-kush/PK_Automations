@@ -18,7 +18,7 @@ async function readServicesFile() {
     return [];
   }
 }
-async function await writeServicesFile(data) {
+async function writeServicesFile(data) {
   const fs = await import('fs');
   const path = await import('path');
   const dataPath = path.join(process.cwd(), 'src', 'data', 'services.json');
@@ -104,6 +104,8 @@ export async function DELETE(req, { params }) {
 
     // attempt to remove any uploaded images if they live in /uploads
     try {
+      const fs = await import('fs');
+      const path = await import('path');
       const target = services[idx];
       if (target) {
         const imgs = [];

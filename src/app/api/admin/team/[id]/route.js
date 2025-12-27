@@ -14,7 +14,7 @@ async function readTeamFile() {
     return [];
   }
 }
-async function await writeTeamFile(data) {
+async function writeTeamFile(data) {
   const fs = await import('fs');
   const path = await import('path');
   const dataPath = path.join(process.cwd(), 'src', 'data', 'team.json');
