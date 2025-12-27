@@ -153,11 +153,14 @@ export async function POST(req) {
       const stmt = db.prepare('INSERT INTO orders (id, reference, userId, name, email, normalizedEmail, phone, items, total, shipping, shippingAddress, shippingLocation, paid, paymentMethod, status, statusHistory, createdAt) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
       const initHistory = JSON.stringify([{ status, changedAt: createdAt, by: userId || name || 'system' }]);
       // store normalized phone and normalized email (lowercase) and snapshot items
+      console.log('[api/checkout] Inserting order:', { id, reference, userId, email: normalizedEmail, phone: normalizedPhone, paymentMethod });
       await stmt.run([id, reference, userId, name, normalizedEmail, normalizedEmail, normalizedPhone, JSON.stringify(itemsSnapshot), orderTotal, shippingAmt, shippingAddrStr, shippingLocStr, paid, paymentMethod, status, initHistory, createdAt]);
       try { stmt.free(); } catch (e) {}
+      console.log('[api/checkout] Order inserted, calling saveDB()');
       await saveDB();
+      console.log('[api/checkout] Order saved successfully');
     } catch (e) {
-      console.error('db insert failed', e);
+      console.error('[api/checkout] db insert failed:', e.message || e, e.stack);
       return new Response(JSON.stringify({ error: 'Could not save order' }), { status: 500 });
     }
 

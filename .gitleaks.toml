@@ -3,6 +3,7 @@
 [[allowlist]]
   description = ".env.example is a template with placeholder values only"
   paths = [".env.example"]
+  regexes = ["DATABASE_URL="]
 
 [[allowlist]]
   description = "Documentation files, not secrets"
