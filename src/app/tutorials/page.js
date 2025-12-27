@@ -60,7 +60,9 @@ export default function Tutorials() {
     })();
 
     const handler = (e) => {
-      const val = (e && e.detail && typeof e.detail.editMode !== 'undefined') ? !!e.detail.editMode : (localStorage.getItem('pkat_admin_edit') === '1');
+      const val = (e && e.detail && typeof e.detail.editMode !== 'undefined') 
+        ? !!e.detail.editMode 
+        : (typeof window !== 'undefined' && typeof localStorage !== 'undefined' && localStorage.getItem('pkat_admin_edit') === '1');
       setIsEditing(val);
     };
     handler();

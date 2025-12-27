@@ -1,5 +1,7 @@
 import { getDB } from '@/utils/db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req) {
   try {
     const url = new URL(req.url);

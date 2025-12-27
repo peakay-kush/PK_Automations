@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,7 +9,7 @@ import { getToken } from '@/utils/auth';
 import { apiFetch } from '@/utils/api';
 import OrderStatusClient from '@/components/OrderStatusClient';
 
-export default function OrdersPage() {
+function OrdersList() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const params = useSearchParams();
@@ -111,5 +111,13 @@ export default function OrdersPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function OrdersPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex flex-col"><Header /><div className="flex-grow flex items-center justify-center"><div>Loading orders...</div></div><Footer /></div>}>
+      <OrdersList />
+    </Suspense>
   );
 }
