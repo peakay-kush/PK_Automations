@@ -11,8 +11,11 @@ export async function GET(req, { params }) {
   try {
     const id = params.id;
     const db = await getDB();
-    const raw = db.exec('SELECT id, name, email, createdAt, role, disabled FROM users WHERE id = "' + id + '"');
-    const row = (raw[0] && raw[0].values && raw[0].values[0]) || null;
+    const stmt = db.prepare('SELECT id, name, email, createdAt, role, disabled FROM users WHERE id = ?');
+    stmt.bind([id]);
+    const hasRow = await stmt.step();
+    const row = hasRow ? stmt.get() : null;
+    stmt.free();
     if (!row) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     const user = { id: row[0], name: row[1], email: row[2], createdAt: row[3], role: row[4], disabled: !!row[5] };
     return NextResponse.json(user);
@@ -31,10 +34,11 @@ export async function PUT(req, { params }) {
     const db = await getDB();
     // ensure disabled column exists
     try {
-      const info = db.exec("PRAGMA table_info(users);")[0]?.values || [];
-      const cols = info.map((r) => r[1]);
+      const info = await db.exec("PRAGMA table_info(users);");
+      const values = (info[0] && info[0].values) || [];
+      const cols = values.map((r) => r[1]);
       if (!cols.includes('disabled')) {
-        db.run("ALTER TABLE users ADD COLUMN disabled INTEGER DEFAULT 0");
+        await db.run("ALTER TABLE users ADD COLUMN disabled INTEGER DEFAULT 0");
       }
     } catch (e) {}
 
@@ -56,10 +60,13 @@ export async function PUT(req, { params }) {
     if (updates.length === 0) return NextResponse.json({ error: 'No changes provided' }, { status: 400 });
 
     paramsArr.push(id);
-    db.run(`UPDATE users SET ${updates.join(', ')} WHERE id = ?`, paramsArr);
+    await db.run(`UPDATE users SET ${updates.join(', ')} WHERE id = ?`, paramsArr);
     await saveDB();
-    const raw = db.exec('SELECT id, name, email, createdAt, role, disabled FROM users WHERE id = "' + id + '"');
-    const row = (raw[0] && raw[0].values && raw[0].values[0]) || null;
+    const stmt = db.prepare('SELECT id, name, email, createdAt, role, disabled FROM users WHERE id = ?');
+    stmt.bind([id]);
+    const hasRow = await stmt.step();
+    const row = hasRow ? stmt.get() : null;
+    stmt.free();
     if (!row) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     const user = { id: row[0], name: row[1], email: row[2], createdAt: row[3], role: row[4], disabled: !!row[5] };
     return NextResponse.json({ ok: true, user });
@@ -76,19 +83,28 @@ export async function DELETE(req, { params }) {
     const id = params.id;
     const db = await getDB();
     // get role of target
-    const raw = db.exec('SELECT role FROM users WHERE id = "' + id + '"');
-    const roleRow = (raw[0] && raw[0].values && raw[0].values[0]) || null;
+    const stmt = db.prepare('SELECT role FROM users WHERE id = ?');
+    stmt.bind([id]);
+    const hasRow = await stmt.step();
+    const roleRow = hasRow ? stmt.get() : null;
+    stmt.free();
     if (!roleRow) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     const targetRole = roleRow[0];
     if (targetRole === 'super') {
       // only a super can delete another super
       if (auth.role !== 'super') return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
       // ensure at least one other super remains
-      const res = db.exec('SELECT COUNT(*) FROM users WHERE role = "super"');
-      const count = (res[0] && res[0].values && res[0].values[0] && res[0].values[0][0]) || 0;
+      const countStmt = db.prepare('SELECT COUNT(*) as count FROM users WHERE role = ?');
+      countStmt.bind(['super']);
+      await countStmt.step();
+      const countObj = countStmt.getAsObject();
+      countStmt.free();
+      const count = countObj ? (countObj.count || 0) : 0;
       if (count <= 1) return NextResponse.json({ error: 'Cannot delete the last super user' }, { status: 400 });
     }
-    db.run('DELETE FROM users WHERE id = "' + id + '"');
+    const delStmt = db.prepare('DELETE FROM users WHERE id = ?');
+    await delStmt.run([id]);
+    delStmt.free();
     await saveDB();
     return NextResponse.json({ ok: true });
   } catch (err) {
