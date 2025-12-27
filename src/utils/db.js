@@ -6,29 +6,47 @@ export async function initDB() {
     throw new Error('initDB can only be called on the server');
   }
   if (db) return db;
-  // Load sql.js using dynamic import
-  const sqljsModule = await import('sql.js');
-  const initSqlJs = sqljsModule.default || sqljsModule;
-  const path = (await import('path')).default || (await import('path'));
-  const fs = (await import('fs')).default || (await import('fs'));
-  if (!dbPath) dbPath = path.join(process.cwd(), 'data', 'users.db');
-  // initialize SQL.js and make sure locateFile points to the wasm in node_modules
-  const SQL = await initSqlJs({
-    locateFile: (file) => path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', file)
-  });
-  let buffer = null;
+  
   try {
-    if (fs.existsSync(dbPath)) buffer = fs.readFileSync(dbPath);
-  } catch (e) {}
-  db = new SQL.Database(buffer);
-  db.run(`CREATE TABLE IF NOT EXISTS users (
-    id TEXT PRIMARY KEY,
-    name TEXT,
-    email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL,
-    createdAt TEXT,
-    role TEXT DEFAULT 'user'
-  )`);
+    // Load sql.js using dynamic import with error handling for edge runtime
+    let initSqlJs;
+    try {
+      const sqljsModule = await import('sql.js');
+      initSqlJs = sqljsModule.default || sqljsModule;
+    } catch (e) {
+      console.error('[db] Failed to load sql.js:', e.message);
+      throw new Error(`Failed to load sql.js: ${e.message}`);
+    }
+    
+    const path = (await import('path')).default || (await import('path'));
+    const fs = (await import('fs')).default || (await import('fs'));
+    if (!dbPath) dbPath = path.join(process.cwd(), 'data', 'users.db');
+    
+    // initialize SQL.js and make sure locateFile points to the wasm in node_modules
+    let SQL;
+    try {
+      SQL = await initSqlJs({
+        locateFile: (file) => path.join(process.cwd(), 'node_modules', 'sql.js', 'dist', file)
+      });
+    } catch (e) {
+      console.error('[db] Failed to initialize SQL.js:', e.message);
+      throw new Error(`Failed to initialize SQL.js: ${e.message}`);
+    }
+    
+    let buffer = null;
+    try {
+      if (fs.existsSync(dbPath)) buffer = fs.readFileSync(dbPath);
+    } catch (e) {}
+    
+    db = new SQL.Database(buffer);
+    db.run(`CREATE TABLE IF NOT EXISTS users (
+      id TEXT PRIMARY KEY,
+      name TEXT,
+      email TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL,
+      createdAt TEXT,
+      role TEXT DEFAULT 'user'
+    )`);
 
   // Orders table (for checkout history & payments)
   db.run(`CREATE TABLE IF NOT EXISTS orders (
@@ -180,7 +198,11 @@ export async function initDB() {
     console.warn('failed to ensure mpesa_queue table', e);
   }
 
-  return db;
+    return db;
+  } catch (err) {
+    console.error('[db] initDB error:', err.message || err);
+    throw err;
+  }
 }
 
 export async function saveDB() {

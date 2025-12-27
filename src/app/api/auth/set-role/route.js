@@ -4,6 +4,8 @@ import { getDB, saveDB } from '@/utils/db';
 
 const JWT_SECRET = process.env.JWT_SECRET || process.env.NEXT_PUBLIC_JWT_SECRET || 'dev-secret';
 
+export const runtime = 'nodejs';
+
 export async function POST(req) {
   try {
     const auth = req.headers.get('authorization') || '';
