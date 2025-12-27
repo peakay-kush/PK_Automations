@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getDB, saveDB } from '@/utils/db';
 import { getTokenFromHeaders, verifyToken } from '@/utils/serverAuth';
 
+export const runtime = 'nodejs';
+
 export async function GET(req, { params }) {
   try {
     const db = await getDB();

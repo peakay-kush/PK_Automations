@@ -1,5 +1,7 @@
 import { getDB, saveDB } from '@/utils/db';
 
+export const runtime = 'nodejs';
+
 export async function POST(req) {
   try {
     const body = await req.json();

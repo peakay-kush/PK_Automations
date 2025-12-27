@@ -3,6 +3,8 @@ import nodemailer from 'nodemailer';
 import { getDB, saveDB } from '@/utils/db';
 import { getTokenFromHeaders, verifyToken } from '@/utils/serverAuth';
 
+export const runtime = 'nodejs';
+
 const ALLOWED_STATUSES = ['created','pending','confirmed','dispatched','completed','failed','cancelled'];
 
 async function sendOrderEmail(to, subject, html) {

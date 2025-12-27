@@ -3,6 +3,8 @@ import { getDB, saveDB } from '@/utils/db';
 import { getTokenFromHeaders, verifyToken } from '@/utils/serverAuth';
 import { normalizeKenyanPhone, isValidKenyanPhone } from '@/utils/helpers';
 
+export const runtime = 'nodejs';
+
 async function sendOrderEmail(to, subject, html) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',

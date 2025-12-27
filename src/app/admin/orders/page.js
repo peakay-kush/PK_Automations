@@ -3,6 +3,9 @@ import Link from 'next/link';
 import AdminOrderStatusControl from '@/components/AdminOrderStatusControl';
 import AdminOrderRow from '@/components/AdminOrderRow';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 export default async function OrdersPage() {
   const db = await getDB();
   let orders = [];

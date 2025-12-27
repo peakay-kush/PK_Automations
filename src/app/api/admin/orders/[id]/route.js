@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getDB, saveDB } from '@/utils/db';
 import { requireAdmin } from '@/utils/serverAuth';
 
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function DELETE(req, { params }) {

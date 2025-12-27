@@ -1,5 +1,7 @@
 import { getDB, saveDB } from '@/utils/db';
 
+export const runtime = 'nodejs';
+
 export async function POST(req) {
   // Allow only in non-production environments or when explicitly enabled
   if (process.env.NODE_ENV === 'production' && process.env.DEBUG_MPESA !== '1') {

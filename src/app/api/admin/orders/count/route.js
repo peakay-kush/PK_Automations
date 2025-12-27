@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getDB } from '@/utils/db';
 import { getTokenFromHeaders, verifyToken } from '@/utils/serverAuth';
 
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET(req) {
