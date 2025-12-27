@@ -41,10 +41,8 @@ export default function LoginPage() {
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.detail || json.error || 'Login failed');
-      // SimpleJWT returns access/refresh; store access token in localStorage to match current app
       const token = json.access || json.token;
       if (token) localStorage.setItem('pkat_token', token);
-      // clear any lingering toasts (remove stray error toasts that may appear on login)
       try { window.dispatchEvent(new CustomEvent('toastClear')); } catch (e) {}
       setMessage('✓ Logged in! Redirecting...');
       setTimeout(() => router.push(redirect), 1000);

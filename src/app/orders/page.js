@@ -2,52 +2,69 @@
 
 export const dynamic = 'force-dynamic';
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { tutorials as fallbackTutorials } from '@/data/products';
+import { ArrowRight, Search, Play, Image as ImageIcon } from 'lucide-react';
 import Link from 'next/link';
-import { getToken } from '@/utils/auth';
-import { apiFetch } from '@/utils/api';
-import OrderStatusClient from '@/components/OrderStatusClient';
+import { useState, useEffect, useMemo } from 'react';
+import { getToken, fetchProfile } from '@/utils/auth';
+import AdminInlineControls from '@/components/AdminInlineControls';
+import AdminSectionControls from '@/components/AdminSectionControls';
+import ImageWithFade from '@/components/ImageWithFade';
 
-export default function OrdersPage() {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const params = useSearchParams();
-  const [highlight, setHighlight] = useState(null);
+export default function Tutorials() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [tutorials, setTutorials] = useState(fallbackTutorials || []);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    try { setHighlight(params?.get('highlight') || null); } catch (e) { setHighlight(null); }
-  }, [params]);
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const token = getToken();
-      if (!token) {
-        window.location.href = '/login?redirect=/orders';
-        return;
-      }
-      const res = await apiFetch('/api/orders/my/', { headers: { Authorization: 'Bearer ' + token } });
-      if (!res.ok) {
-        setOrders([]);
-        setLoading(false);
-        return;
-      }
-      const json = await res.json();
-      setOrders(json.orders || []);
-      setLoading(false);
-
-      // scroll to highlighted order if present
-      if (highlight) {
-        setTimeout(() => {
-          const el = document.getElementById('order-' + highlight);
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 200);
-      }
+    let mounted = true;
+    const fetchTuts = async () => {
+      try {
+        const res = await fetch('/api/tutorials');
+        if (res.ok) {
+          const data = await res.json();
+          const arr = Array.isArray(data) ? data : (data.tutorials || []);
+          if (mounted) setTutorials(arr);
+        }
+      } catch (e) { /* ignore */ }
     };
-    fetchOrders();
+    fetchTuts();
+    window.addEventListener('adminUpdated', fetchTuts);
+    return () => { mounted = false; window.removeEventListener('adminUpdated', fetchTuts); };
   }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const token = getToken();
+        if (!token) return;
+        const profile = await fetchProfile();
+        if (!mounted) return;
+        if (profile && (profile.role === 'admin' || profile.role === 'super')) setIsAdmin(true);
+      } catch (e) {}
+    })();
+    // admin edit mode handler uses localStorage and window events
+    const handler = (e) => {
+      const val = (e && e.detail && typeof e.detail.editMode !== 'undefined') ? !!e.detail.editMode : (localStorage.getItem('pkat_admin_edit') === '1');
+      setIsEditing(val);
+    };
+    handler();
+    window.addEventListener('adminEditModeChanged', handler);
+    return () => { mounted = false; window.removeEventListener('adminEditModeChanged', handler); };
+  }, []);
+
+  const filteredTutorials = useMemo(() => {
+    return tutorials.filter(tut => {
+      const matchesSearch = tut.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === 'All' || tut.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [tutorials, searchTerm, selectedCategory]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -55,58 +72,83 @@ export default function OrdersPage() {
 
       <section className="py-12">
         <div className="container mx-auto">
-          <h1 className="text-2xl font-bold text-primary mb-6">Your Orders</h1>
-          {loading ? (
-            <div>Loading...</div>
-          ) : orders.length === 0 ? (
-            <div>No orders yet. <Link href="/shop" className="text-accent">Start shopping</Link></div>
+          <h1 className="text-2xl font-bold text-primary mb-6">Tutorials</h1>
+
+          <div className="mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex-1 min-w-0">
+                <input
+                  type="text"
+                  placeholder="Search tutorials..."
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  className="w-full px-4 py-2 border rounded"
+                />
+              </div>
+
+              <div className="flex-shrink-0">
+                <Link href="/tutorials/new" className="inline-block px-4 py-2 bg-accent text-white rounded shadow hover:bg-accent-dark transition">
+                  <ArrowRight className="w-4 h-4 inline-block mr-2 -mt-1" />
+                  Create Tutorial
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <AdminSectionControls />
+            </div>
+          </div>
+
+          {filteredTutorials.length === 0 ? (
+            <div className="text-center py-8">
+              <p className="text-gray-500">No tutorials found. Try adjusting your search or category.</p>
+            </div>
           ) : (
-            <div className="space-y-4">
-              {orders.map(o => (
-                <div id={`order-${o.id}`} key={o.id} className={`bg-white rounded shadow p-4 hover:shadow-md ${highlight === o.id ? 'ring-2 ring-accent bg-yellow-50' : ''}`}>
-                  <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <div className="font-bold">Reference: <Link href={`/order/${o.id}`} className="text-primary">{o.reference}</Link></div>
-                      <div className="text-sm text-gray-600">Placed: {new Date(o.createdAt).toLocaleString()}</div>
-                      <div className="text-sm mt-2">Items: <strong>{(o.items || []).length}</strong></div>
-                      <div className="text-sm mt-1">Payment: <strong>{o.paymentMethod}</strong></div>
-                    </div>
-
-                    <div className="text-right">
-                      <div className="font-bold">KSh {Number(o.total).toLocaleString()}</div>
-                      <div className="text-sm mt-2">
-                        {(() => {
-                          const s = (o.status || '').toLowerCase();
-                          const cls = s === 'paid' || s === 'completed' || s === 'confirmed' ? 'bg-green-100 text-green-700' : s === 'pending' ? 'bg-yellow-100 text-yellow-700' : s === 'failed' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700';
-                          return <span className={`inline-block px-3 py-1 rounded-full text-sm ${cls}`}>{o.status}</span>;
-                        })()}
-                      </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredTutorials.map(tut => (
+                <div key={tut.id} className="bg-white rounded shadow overflow-hidden group">
+                  <div className="relative">
+                    <ImageWithFade
+                      src={tut.thumbnail || '/placeholder.png'}
+                      alt={tut.title}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                      <Link href={`/tutorial/${tut.id}`} className="text-white text-lg font-semibold">
+                        <Play className="w-5 h-5 inline-block mr-2 -mt-1" />
+                        Watch Tutorial
+                      </Link>
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <Link href={`/order/${o.id}`} className="px-3 py-2 rounded border text-sm">View details</Link>
-                      <button onClick={async () => {
-                        if (!confirm('Delete this order from your history? This cannot be undone.')) return;
-                        try {
-                          const token = getToken();
-                          if (!token) { window.location.href = '/login?redirect=/orders'; return; }
-                          const res = await fetch(`/api/orders/${o.id}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + token } });
-                          const j = await res.json().catch(() => ({}));
-                          if (!res.ok) throw new Error(j?.error || 'Delete failed');
-                          // remove from UI
-                          setOrders(prev => prev.filter(x => x.id !== o.id));
-                        } catch (e) { alert(String(e.message || e)); }
-                      }} className="px-3 py-2 rounded border text-sm text-red-600 hover:bg-red-50">Delete</button>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold mb-2">
+                      <Link href={`/tutorial/${tut.id}`} className="text-primary hover:underline">
+                        {tut.title}
+                      </Link>
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">{tut.description}</p>
 
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-xs rounded-full" style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem', paddingTop: '0.125rem', paddingBottom: '0.125rem', backgroundColor: '#f3f4f6', color: '#374151' }}>
+                        {tut.category}
+                      </span>
 
-                    </div>
-
-                    <div id={`status-${o.id}`} className="hidden w-full md:w-1/2">
-                      <OrderStatusClient orderId={o.id} initialOrder={o} />
+                      <span className="text-xs rounded-full" style={{ paddingLeft: '0.5rem', paddingRight: '0.5rem', paddingTop: '0.125rem', paddingBottom: '0.125rem', backgroundColor: '#f3f4f6', color: '#374151' }}>
+                        {new Date(tut.createdAt).toLocaleDateString()}
+                      </span>
                     </div>
                   </div>
+
+                  {isAdmin && (
+                    <div className="p-4 pt-0">
+                      <AdminInlineControls
+                        itemId={tut.id}
+                        itemType="tutorial"
+                        className="flex gap-2"
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
