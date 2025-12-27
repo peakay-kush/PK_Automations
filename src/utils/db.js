@@ -6,15 +6,9 @@ export async function initDB() {
     throw new Error('initDB can only be called on the server');
   }
   if (db) return db;
-  // Load sql.js using a runtime require when available to avoid bundling issues
-  let initSqlJs;
-  try {
-    const runtimeRequire = (typeof globalThis.require === 'function' && globalThis.require) || eval('require');
-    initSqlJs = runtimeRequire('sql.js');
-  } catch (e) {
-    const sqljsModule = await import('sql.js');
-    initSqlJs = sqljsModule.default || sqljsModule;
-  }
+  // Load sql.js using dynamic import
+  const sqljsModule = await import('sql.js');
+  const initSqlJs = sqljsModule.default || sqljsModule;
   const path = (await import('path')).default || (await import('path'));
   const fs = (await import('fs')).default || (await import('fs'));
   if (!dbPath) dbPath = path.join(process.cwd(), 'data', 'users.db');

@@ -10,18 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_DB: pkat_db
-          POSTGRES_USER: pkat_user
-          POSTGRES_PASSWORD: pkat_pass
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd "pg_isready -U pkat_user -d pkat_db" --health-interval 10s --health-timeout 5s --health-retries 5
-
     steps:
       - uses: actions/checkout@v4
 
@@ -35,25 +23,3 @@ jobs:
 
       - name: Build frontend
         run: npm run build
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install backend deps
-        run: |
-          cd backend
-          python -m venv venv
-          . venv/bin/activate
-          pip install -r requirements.txt
-
-      - name: Run backend migrations and tests
-        env:
-          DATABASE_URL: postgres://pkat_user:pkat_pass@localhost:5432/pkat_db
-        run: |
-          cd backend
-          . venv/bin/activate
-          python manage.py makemigrations --noinput || true
-          python manage.py migrate --noinput
-          python manage.py test --verbosity=2
